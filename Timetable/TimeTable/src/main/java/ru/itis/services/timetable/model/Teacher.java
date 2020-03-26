@@ -25,7 +25,7 @@ public class Teacher {
     private List<ElectiveCourse> courses;
 
     @OneToOne
-    @JoinColumn(name = "fk_timetable_id", referencedColumnName = "timetable_id")
+    @JoinColumn(name = "fk_timetable_id", referencedColumnName = "time_table_kfu_id")
     private TimeTable timeTable;
 
 }

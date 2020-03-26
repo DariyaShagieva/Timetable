@@ -13,10 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "time_table_kfu")
 public class TimeTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "time_table_kfu_id")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "timeTable")
@@ -27,6 +29,7 @@ public class TimeTable {
 
     private String day;
 
+    @Column(name = "time_table_group")
     private String group;
 
     private String time;

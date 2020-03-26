@@ -28,6 +28,7 @@ public class User {
 
     private String lastName;
 
+    @Column(name = "user_group")
     private String group;
 
     @Enumerated(value = EnumType.STRING)

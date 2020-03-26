@@ -4,3 +4,6 @@ zuul:
     user:
       path: /timetable/**
       serviceId: TIMETABLE
+    bot:
+      path: /telegrambot/**
+      serviceId: TELEGRAMBOT
