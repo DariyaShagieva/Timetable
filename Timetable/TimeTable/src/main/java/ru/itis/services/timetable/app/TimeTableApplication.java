@@ -32,7 +32,7 @@ public class TimeTableApplication {
     public Docket api() throws IOException, XmlPullParserException {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ru.itis.services.cats.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("ru.itis.services.timetable.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
