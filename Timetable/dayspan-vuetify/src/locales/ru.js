@@ -1,393 +1,396 @@
 
 export default {
   promptLabels: {
-    actionRemove:       'Are you sure you want to remove this event?',
-    actionExclude:      'Are you sure you want to remove this event occurrence?',
-    actionCancel:       'Are you sure you want to cancel this event?',
-    actionUncancel:     'Are you sure you want to uncancel this event?',
-    actionSetStart:     'Are you sure you want to set this occurrence as the first?',
-    actionSetEnd:       'Are you sure you want to set this occurrence as the last?',
-    actionMove:         'Are you sure you want to move this event?',
-    actionInclude:      'Are you sure you want to add an event occurrence?',
-    move:               'Are you sure you want to move this event?',
-    toggleAllDay:       'Are you sure you want to change whether this event occurs all day?',
-    removeExistingTime: 'Are you sure you want to remove all event occurrences at this time?'
+    actionRemove: 'Вы уверены, что хотите удалить это событие?',
+    actionExclude: 'Вы уверены, что хотите удалить в событие заметку ?',
+    actionCancel: 'Вы уверены, что хотите отменить это событие?',
+    actionUncancel: 'Вы уверены, что не хотите отменить это событие?',
+    actionSetStart: 'Вы уверены,что хотите начать установку это событие в качестве первого?',
+    actionSetEnd: 'Вы уверены, что хотите закончить установку это событие как последнее?',
+    actionMove: 'Вы уверены, что хотите перенести это мероприятие?',
+    actionInclude: 'Вы уверены, что хотите добавить какое-то событие?',
+    move: 'Вы уверены, что хотите перенести это мероприятие?',
+    toggleAllDay: 'Вы уверены, что хотите изменить, происходит ли это событие в течение всего дня?',
+    removeExistingTime: 'Вы уверены, что хотите удалить все события, происходящие в это время?'
   },
   placeholder: {
-    noTitle: '(no title)'
+    noTitle: '(нет заголовка)'
   },
   patterns: {
-    lastDay:        (day) => 'Last day of the month',
-    lastDayOfMonth: (day) => 'Last day of ' + day.format('MMMM'),
-    lastWeekday:    (day) => 'Last ' + day.format('dddd') + ' in ' + day.format('MMMM')
+    lastDay: (day) => 'Последний день месяца',
+    lastDayOfMonth: (day) => 'Последний день ' + day.format('MMMM'),
+    lastWeekday: (day) => 'Последний ' + day.format('dddd') + ' в ' + day.format('MMMM')
   },
   colors: [
-    { text: 'Red' },
-    { text: 'Pink' },
-    { text: 'Purple' },
-    { text: 'Deep Purple' },
-    { text: 'Indigo' },
-    { text: 'Blue' },
-    { text: 'Glue' },
-    { text: 'Light Blue' },
-    { text: 'Cyan' },
-    { text: 'Teal' },
-    { text: 'Green' },
-    { text: 'Light Green' },
-    { text: 'Lime' },
-    { text: 'Yellow' },
-    { text: 'Amber' },
-    { text: 'Orange' },
-    { text: 'Deep Orange' },
-    { text: 'Brown' },
-    { text: 'Blue Gray' },
-    { text: 'Gray' },
-    { text: 'Black' }
+    { text: 'Красный' },
+    { text: 'Розовый' },
+    { text: 'Фиолетовый' },
+    { text: 'Темно-фиолетовый' },
+    { text: "Индиго" },
+    { text: 'Синий' },
+    { text: 'Темно-синий' },
+    { text: 'Светло-голубой' },
+    { text: 'Голубой' },
+    { text: 'Бирюзовый' },
+    { text: 'Зеленый' },
+    { text: 'Светло-зеленый' },
+    { text: 'Лаймовый' },
+    { text: 'Желтый' },
+    { text: 'Янтарный' },
+    { text: 'Оранжевый' },
+    { text: 'Темно-оранжевый' },
+    { text: 'Коричневый' },
+    { text: 'Серо-голубой' },
+    { text: 'Серый' },
+    { text: 'Черный' }
   ],
   icons: [
-    { text: 'Alarm' },
-    { text: 'Star' },
-    { text: 'Love' },
-    { text: 'Action' },
-    { text: 'Assignment' },
-    { text: 'Warning' },
-    { text: 'Money' },
-    { text: 'Charge' },
-    { text: 'Home' },
-    { text: 'Play' },
-    { text: 'Email' },
-    { text: 'Phone' },
-    { text: 'Chart' },
-    { text: 'Biking' },
-    { text: 'Travel' }
+    { text: 'Тревога' },
+    { text: 'Звезда' },
+    { text: 'Любовь' },
+    { text: 'Действие' },
+    { text: 'Назначение' },
+    { text: 'Предупреждение' },
+    { text: 'Деньги' },
+    { text: 'Зарядка' },
+    { text: 'Дом' },
+    { text: 'Игра' },
+    { text: 'Почта' },
+    { text: 'Телефон' },
+    { text: 'Диаграмма' },
+    { text: 'Поездка' },
+    { text: "Путешествие" }
   ],
   defaults: {
     dsDay: {
       formats: {
-        month:  'MMM'
+        month: 'MMM'
       }
     },
     dsCalendarApp: {
       types: [
-        { label: 'Day' },
-        { label: 'Week' },
-        { label: 'Month' },
-        { label: 'Year' },
-        { label: 'Schedule' },
-        { label: '4 days' }
+        { label: 'День' },
+        { label: 'Неделя' },
+        { label: 'Месяц' },
+        { label: 'Год' },
+        { label: 'График' },
+        { label: '4 дня' }
       ],
       formats: {
         today: 'dddd, MMMM D',
         xs: 'MMM'
       },
       labels: {
-        next: (type) => type ? 'Next ' + type.label.toLowerCase() : 'Next',
-        prev: (type) => type ? 'Previous ' + type.label.toLowerCase() : 'Previous',
-        moveCancel: 'Cancel move',
-        moveSingleEvent: 'Move event',
-        moveOccurrence: 'Move just this event occurrence',
-        moveAll: 'Move all event occurrences',
-        moveDuplicate: 'Add event occurrence',
-        promptConfirm: 'Yes',
-        promptCancel: 'No',
-        today: 'TODAY'
+        next: (type) => type ? 'Следующий ' + type.label.toLowerCase() : 'Следующий',
+        prev: (type) => type ? 'Предыдущий ' + type.label.toLowerCase() : 'Предыдущий',
+        moveCancel: 'Отменить перемещение',
+        moveSingleEvent: 'Переместить событие',
+        moveOccurrence: 'Переместить задачу этого события',
+        moveAll: 'Переместить все задачи этого события',
+        moveDuplicate: 'Добавить задачу',
+        promptConfirm: 'Да',
+        promptCancel: 'Нет',
+        today: 'СЕГОДНЯ'
       }
     },
     dsAgendaEvent: {
       formats: {
-        firstLine:  'ddd',
+        firstLine: 'ddd',
         secondLine: 'MMM Do',
-        start:      'dddd, MMMM D',
-        time:       'h:mm a'
+        start: 'dddd, MMMM D',
+        time: 'h:mm a'
       },
       labels: {
-        allDay:   'All day',
-        options:  'Options',
-        close:    'Close',
-        day:      ['day', 'days'],
-        days:     ['day', 'days'],
-        minute:   ['minute', 'minutes'],
-        minutes:  ['minute', 'minutes'],
-        hour:     ['hour', 'hours'],
-        hours:    ['hour', 'hours'],
-        week:     ['week', 'weeks'],
-        weeks:    ['week', 'weeks'],
-        second:   ['second', 'seconds'],
-        seconds:  ['second', 'seconds'],
-        busy:     'Busy',
-        free:     'Free'
+        allDay: 'Весь день',
+        options: 'Настройки',
+        close: 'Закрыть',
+        day: ['день', 'дни'],
+        days: ['день', 'дни'],
+        minute: ['минута', 'минуты'],
+        minutes: ['минута', 'минуты'],
+        hour: ['час', 'часы'],
+        hours: ['час', 'часы'],
+        week: ['неделя', 'недели'],
+        weeks: ['неделя', 'недели'],
+        second: ['секунда', 'секунды'],
+        seconds: ['секунда', 'секунды'],
+        busy: 'Занят',
+        free: 'Свободен'
       }
     },
     dsCalendarEventChip: {
       formats: {
-        fullDay:          'ddd MMM Do YYYY',
-        timed:            'ddd MMM Do YYYY'
+        fullDay: 'ddd MMM Do YYYY',
+        timed: 'ddd MMM Do YYYY'
       }
     },
     dsCalendarEventPopover: {
       formats: {
-        start:    'dddd, MMMM D',
-        time:     'h:mm a'
+        start: 'dddd, MMMM D',
+        time: 'h:mm a'
       },
       labels: {
-        allDay:   'All day',
-        options:  'Options',
-        close:    'Close',
-        day:      ['day', 'days'],
-        days:     ['day', 'days'],
-        minute:   ['minute', 'minutes'],
-        minutes:  ['minute', 'minutes'],
-        hour:     ['hour', 'hours'],
-        hours:    ['hour', 'hours'],
-        week:     ['week', 'weeks'],
-        weeks:    ['week', 'weeks'],
-        second:   ['second', 'seconds'],
-        seconds:  ['second', 'seconds'],
-        busy:     'Busy',
-        free:     'Free'
+        allDay: 'Весь день',
+        options: 'Настройки',
+        close: 'Закрыть',
+        day: ['день', 'дни'],
+        days: ['день', 'дни'],
+        minute: ['минута', 'минуты'],
+        minutes: ['минута', 'минуты'],
+        hour: ['час', 'часы'],
+        hours: ['час', 'часы'],
+        week: ['неделя', 'недели'],
+        weeks: ['неделя', 'недели'],
+        second: ['секунда', 'секунды'],
+        seconds: ['секунда', 'секунды'],
+        busy: 'Занят',
+        free: 'Свободен'
       }
     },
     dsCalendarEventCreatePopover: {
       formats: {
-        start:    'dddd, MMMM D',
-        time:     'h:mm a'
+        start: 'dddd, MMMM D',
+        time: 'h:mm a'
       },
       labels: {
-        title:    'Add title',
-        allDay:   'All day',
-        close:    'Close',
-        save:     'Save',
-        day:      ['day', 'days'],
-        days:     ['day', 'days'],
-        minute:   ['minute', 'minutes'],
-        minutes:  ['minute', 'minutes'],
-        hour:     ['hour', 'hours'],
-        hours:    ['hour', 'hours'],
-        week:     ['week', 'weeks'],
-        weeks:    ['week', 'weeks'],
-        second:   ['second', 'seconds'],
-        seconds:  ['second', 'seconds'],
-        busy:     'Busy',
-        free:     'Free',
-        location: 'Add location',
-        description: 'Add description',
-        calendar: 'Calendar',
+        title: 'Добавить заголовок',
+        save: 'Сохранить',
+        allDay: 'Весь день',
+        options: 'Настройки',
+        close: 'Закрыть',
+        day: ['день', 'дни'],
+        days: ['день', 'дни'],
+        minute: ['минута', 'минуты'],
+        minutes: ['минута', 'минуты'],
+        hour: ['час', 'часы'],
+        hours: ['час', 'часы'],
+        week: ['неделя', 'недели'],
+        weeks: ['неделя', 'недели'],
+        second: ['секунда', 'секунды'],
+        seconds: ['секунда', 'секунды'],
+        busy: 'Занят',
+        free: 'Свободен',
+        location: 'Добавить местоположение',
+        description: 'Добавить описание',
+        calendar: 'Календарь',
       },
       busyOptions: [
-        {text: 'Busy'},
-        {text: 'Free'}
+        { text: 'Занят' },
+        { text: 'Свободен' }
       ]
     },
     dsSchedule: {
       labels: {
-        editCustom:   'Edit'
+        editCustom: 'Редактировать'
       }
     },
     dsEvent: {
       labels: {
-        moreActions:  'More actions...',
-        cancel:       'Cancel event changes',
-        save:         'Save',
-        title:        'Title',
-        exclusions:   'These are events or spans of time where a normally occurring event was excluded from the schedule. Events are excluded here if an event occurrence is moved.',
-        inclusions:   'These are events or spans of time where events were added outside the normally occurring schedule. Events are added here if an event occurrence is moved.',
-        cancelled:    'These are events or spans of time where events were cancelled.',
-        edit:         'Edit event',
-        add:          'Add event',
-        location:     'Add location',
-        description:  'Add description',
-        calendar:     'Calendar',
+        moreActions: 'Больше действий...',
+        cancel: 'Отменить изменения события',
+        save: 'Сохранить',
+        title: 'Заголовок',
+        exclusions: 'Эти события или промежутки времени, когда обычно происходящее событие было исключено из графика.События исключаются здесь, если вхождение события перемещено.',
+        inclusions: 'Эти события или промежутки времени, когда события были добавлены вне обычно возникающего графика.События добавляются сюда, если вхождение события перемещено.',
+        cancelled: 'Эти события или промежутки времени, когда события были отменены.',
+        edit: 'Редактировать событие',
+        add: 'Добавить событие',
+        location: 'Добавить местоположение',
+        description: 'Добавить описание',
+        calendar: 'Календарь',
         tabs: {
-          details:    'Event Details',
-          forecast:   'Forecast',
-          removed:    'Removed',
-          added:      'Added',
-          cancelled:  'Cancelled'
+          details: 'Детали события',
+          forecast: 'Прогноз',
+          removed: 'Удалено',
+          added: 'Добавлено',
+          cancelled: 'Отменено'
         }
       },
       busyOptions: [
-        {text: 'Busy'},
-        {text: 'Free'}
+        { text: 'Занято' },
+        { text: 'Свободно' }
       ]
     },
     dsScheduleActions: {
       labels: {
-        remove:     'Remove this event',
-        exclude:    'Remove this occurrence',
-        cancel:     'Cancel this occurrence',
-        uncancel:   'Undo cancellation',
-        move:       'Move this occurrence',
-        include:    'Add new occurrence',
-        setStart:   'Set as first occurrence',
-        setEnd:     'Set as last occurrence',
-        pickerOk:   'OK',
-        pickerCancel:'Cancel'
+        remove: ' Удалить это событие',
+        exclude: 'Удалить заметку',
+        cancel: 'Отменить заметку',
+        uncancel: 'Вернуть заметку',
+        move: 'Переместить заметку',
+        include: 'Добавить новую заметку',
+        setStart: 'Поставить как первая заметка',
+        setEnd: 'Поставить как последняя заметка',
+        pickerOk: 'OK',
+        pickerCancel: 'ОТМЕНА'
       }
     },
     dsScheduleForecast: {
       labels: {
-        prefix:     'The forecast shows previous & next',
-        suffix:     'event occurrences within a years time.'
+        prefix: 'прогноз показывает предыдущий и следующий',
+        suffix: 'события произошли в течение нескольких лет'
       }
     },
     dsScheduleFrequencyDay: {
       labels: {
-        type: 'Days'
+        type: 'Дни'
       },
       options: [
-        { text: 'Any day' },
-        { text: 'On the following days...' },
-        { text: 'Every _ days starting on _' }
+        { text: "В любой день" },
+        { text: 'В последующие дни...' },
+        { text: 'Каждые _ дней, начиная с _' }
       ],
       types: [
-        { text: 'Day of the month' },
-        { text: 'Last day of the month' },
-        { text: 'Day of the year' }
+        { text: "День месяца" },
+        { text: 'Последний день месяца' },
+        { text: "День года" }
       ]
     },
     dsScheduleFrequencyDayOfWeek: {
-      weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      weekdays: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
       labels: {
-        type: 'Days of week'
+        type: 'День недели'
       },
       options: [
-        { text: 'Any day of the week' },
-        { text: 'On the following days of the week...' },
-        { text: 'Every _ weekday starting on _' },
-        { text: 'Weekends' },
-        { text: 'Weekdays' }
+        { text: "В любой день недели" },
+        { text: 'В следующие дни недели...' },
+        { text: 'Каждый _ будний день, начиная с _' },
+        { text: 'Выходные дни' },
+        { text: 'Будни' }
       ]
     },
     dsScheduleFrequencyMonth: {
       labels: {
-        type: 'Months'
+        type: "Месяцы"
       },
       months: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
+        "Январь",
+        "Февраль",
+        "Марш",
+        "Апрель",
+        "Май",
+        "Июнь",
+        "Июль",
+        "Август",
+        "Сентябрь",
+        "Октябрь",
+        "Ноябрь",
+        "Декабрь"
       ],
       options: [
-        { text: 'Any month' },
-        { text: 'On the following months...' },
-        { text: 'Every _ months starting on _' }
+        { text: 'Любой месяц' },
+        { text: 'В последующие месяцы...' },
+        { text: 'Каждые _ месяца/ев начиная с _' }
       ]
     },
 
     dsScheduleFrequencyWeek: {
       labels: {
-        type: 'Weeks'
+        type: 'Недели'
       },
       options: [
-        { text: 'Any week' },
-        { text: 'On the following weeks...' },
-        { text: 'Every _ weeks starting on _' }
+        { text: 'Любая неделя' },
+        { text: 'В последующие недели...' },
+        { text: 'Каждые _ недели начиная с _' }
       ],
       types: [
-        { text: 'Week of the month (first week has a Thursday)' },
-        { text: 'Weekspan of the month (starts on first day of month)' },
-        { text: 'Full week of the month (0th = the week before if any)' },
-        { text: 'Last weekspan of the month (starts on last day of month)' },
-        { text: 'Last full week of the month (0th = the week after if any)' },
-        { text: 'Week of the year (first week has a Thursday)' },
-        { text: 'Weekspan of the year (starts on first day of year)' },
-        { text: 'Full week of the year (0th = the week before if any)' },
-        { text: 'Last weekspan of the year (starts on last day of year)' },
-        { text: 'Last full week of the year (0th = the week after if any)' }
+        { text: 'Неделя месяца (первая неделя имеет четверг)' },
+        { text: 'Недельный период месяца (начинается в первый день месяца)' },
+        { text: 'Полная неделя месяца (0-я = предыдущая неделя, если таковая имеется)' },
+        { text: 'На прошлой неделе продолжительность месяца (начинается на последний день месяца)' },
+        { text: 'Последняя полная неделя месяца (0-я = следующая неделя, если таковая имеется)' },
+        { text: 'Неделя года (первая неделя имеет четверг)' },
+        { text: 'Недельный период года (начинается в первый день года)' },
+        { text: 'Полная неделя года (0-я = предыдущая неделя, если таковая имеется)' },
+        { text: 'Период последней недели года (начинается в последний день года)' },
+        { text: 'Последняя полная неделя года (0-я = следующая неделя, если таковая имеется)' }
       ]
     },
 
     dsScheduleFrequencyYear: {
       labels: {
-        type: 'Years'
+        type: 'Годы'
       },
       options: [
-        { text: 'Any year' },
-        { text: 'On the following years...' },
-        { text: 'Every _ years starting on _' }
+        { text: 'Любой год' },
+        { text: 'В последующие годы...' },
+        { text: 'Каждый _ год начиная с _' }
       ]
     },
 
     dsScheduleSpan: {
       labels: {
-        startless:  'Beginning of Time',
-        endless:    'End of Time'
+        startless: 'Начало',
+        endless: 'Окончание'
       },
       formats: {
-        start:      'MMMM Do, YYYY',
-        end:        'MMMM Do, YYYY'
+        start: 'MMMM Do, YYYY',
+        end: 'MMMM Do, YYYY'
       }
     },
 
     dsScheduleTime: {
       labels: {
-        remove:     'Remove time',
-        add:        'Add time'
+        remove: 'Удалить время',
+        add: 'Добавить время'
       }
     },
 
     dsScheduleTimes: {
       labels: {
-        all:        'All day',
-        minute:     'minute',
-        minutes:    'minutes',
-        hour:       'hour',
-        hours:      'hours',
-        day:        'day',
-        days:       'days',
-        week:       'week',
-        weeks:      'weeks',
-        month:      'month',
-        months:     'months',
-        second:     'second',
-        seconds:    'seconds'
+        all: 'Весь день',
+        minute: 'минута',
+        minutes: 'минуты',
+        hour: 'час',
+        hours: 'часы',
+        day: 'день',
+        days: 'дни',
+        week: 'неделя',
+        weeks: 'недели',
+        month: 'месяц',
+        months: 'месяцы',
+        second: 'секунда',
+        seconds: 'секунды'
       }
     },
 
     dsScheduleType: {
       formats: {
-        date:       'LL'
+        date: 'LL'
       }
     },
 
     dsScheduleTypeCustomDialog: {
       labels: {
-        save:     'Save',
-        cancel:   'Cancel'
+        save: 'Сохранить',
+        cancel: 'Отмена'
       }
     },
 
     dsWeekDayHeader: {
       formats: {
-        weekday:    'ddd'
+        weekday: 'ddd'
       }
     },
 
     dsWeeksView: {
-      weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
     },
 
     dsDaysView: {
       hours: [
-        '    ', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am',
-        '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'
+        '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00',
+        '07:00', '08:00', '09:00', '10:00', '11:00',
+        '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00',
+        '19:00', '20:00', '21:00', '22:00', '23:00'
       ]
     },
 
     dsDayPicker: {
-      weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      weekdays: ['Воскресение', 'Понедельние', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
       labels: {
-        prevMonth: 'Previous month',
-        nextMonth: 'Next month'
+        prevMonth: 'Предыдущий месяц',
+        nextMonth: 'Следующий месяц'
       }
     }
   }
