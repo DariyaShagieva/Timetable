@@ -33,6 +33,7 @@
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
+            <v-btn rounded color="primary" dark>Загрузить расписание</v-btn>
             <v-flex xs12>
               <v-checkbox box label="Read Only?" v-model="readOnly"></v-checkbox>
             </v-flex>
@@ -65,7 +66,7 @@ export default {
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
       { value: "ru", text: "Russia" },
-      { value: "en", text: "English" },
+      { value: "en", text: "English" }
     ],
     defaultEvents: [
       {
