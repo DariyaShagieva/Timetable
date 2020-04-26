@@ -115,7 +115,7 @@ export default {
     padding-bottom: 0px;
 
     &.ds-week-header-today {
-      color: #4285f4;
+      color: rgb(76, 175, 80);
       font-weight: 500;
     }
   }

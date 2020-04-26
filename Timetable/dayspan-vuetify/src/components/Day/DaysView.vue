@@ -245,7 +245,7 @@ export default {
 
       /*
       &.ds-same-hour {
-        border-right: 3px solid #4285f4;
+        border-right: 3px solid rgb(76, 175, 80);
         background-color: #f5f5f5;
       }
 

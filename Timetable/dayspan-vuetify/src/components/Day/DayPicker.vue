@@ -53,7 +53,7 @@
           :class="{
             'btn--active': day.currentDay,
             'ds-light-forecolor': !day.inCalendar,
-            'primary': isHighlighted( day )
+            'success': isHighlighted( day )
           }">
           {{ day.dayOfMonth }}
         </v-btn>

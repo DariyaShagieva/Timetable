@@ -75,7 +75,7 @@
       </slot>
 
       <slot name="summary" v-bind="{summary, calendar}">
-        <h1 class="title ds-light-forecolor">{{ summary }}</h1>
+        <h1 class="title">{{ summary }}</h1>
       </slot>
 
       <v-spacer></v-spacer>
@@ -541,7 +541,7 @@ export default {
       calendar && calendar.addPlaceholder(day, true, useDialog);
 
       if (useDialog) {
-        alert('tut')
+        alert("tut");
         eventDialog.add(day);
 
         calendar && eventDialog.$once("close", calendar.clearPlaceholder);
@@ -723,5 +723,10 @@ export default {
   .v-btn__content
   .v-icon {
   color: black;
+}
+.title {
+  .ds-light-forecolor {
+    color: white;
+  }
 }
 </style>

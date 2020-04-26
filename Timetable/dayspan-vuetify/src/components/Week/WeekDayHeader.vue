@@ -243,7 +243,7 @@ export default {
 
     .ds-week-weekday,
     .ds-week-date {
-      color: #4285f4;
+      color: rgb(76, 175, 80);
     }
   }
 

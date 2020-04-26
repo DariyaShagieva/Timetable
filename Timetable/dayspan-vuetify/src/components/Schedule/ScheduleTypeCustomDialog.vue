@@ -37,7 +37,7 @@
           </v-btn>
 
           <v-btn
-            color="primary"
+            color="success"
             @click.stop="save">
             <span v-html="labels.save"></span>
           </v-btn>

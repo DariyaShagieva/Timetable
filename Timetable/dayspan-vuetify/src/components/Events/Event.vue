@@ -29,7 +29,7 @@
           <v-btn
             v-if="!isReadOnly"
             class="ds-button-tall ml-3 mt-0 mb-2" depressed
-            color="primary"
+            color="success"
             :disabled="!canSave"
             @click.stop="save">
 
@@ -91,7 +91,7 @@
     <!-- Tabs -->
     <v-layout row v-if="hasTabs">
       <v-flex xs12 class="mt-2">
-        <v-tabs class="text--primary" v-model="tab">
+        <v-tabs class="text--success" v-model="tab">
 
           <v-tab href="#details" v-if="hasDetails">
             {{ labels.tabs.details }}

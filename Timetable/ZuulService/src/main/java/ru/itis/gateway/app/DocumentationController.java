@@ -1,7 +1,7 @@
 package ru.itis.gateway.app;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.success;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Primary
+@success
 @EnableAutoConfiguration
 public class DocumentationController implements SwaggerResourcesProvider {
 

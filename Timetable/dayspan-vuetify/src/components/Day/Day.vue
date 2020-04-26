@@ -247,7 +247,7 @@ export default {
 
     &.ds-today-dom {
       border-radius: 12px;
-      background-color: #4285f4;
+      background-color: rgb(76, 175, 80);
       color: white;
       display: inline-block;
       position: relative;

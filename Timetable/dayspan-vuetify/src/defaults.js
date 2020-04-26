@@ -114,7 +114,7 @@ export default {
     canExclude: true,
     colors: {
       sameForeground:   'white',
-      sameBackground:   'primary'
+      sameBackground:   'success'
     },
     formats: {
       fullDay:          LOCALE_ENTRY,
