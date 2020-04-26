@@ -1,7 +1,7 @@
 <template>
   <v-app id="dayspan" v-cloak>
     <ds-calendar-app ref="app" :calendar="calendar" :read-only="readOnly" @change="saveState">
-      <template slot="title">TimeTable ITIS</template>
+      <template id="title" slot="title">TimeTable ITIS</template>
 
       <template slot="eventPopover" slot-scope="slotData">
         <ds-calendar-event-popover v-bind="slotData" :read-only="readOnly" @finish="saveState"></ds-calendar-event-popover>
@@ -17,26 +17,13 @@
         ></ds-calendar-event-create-popover>
       </template>
 
-      <template slot="eventTimeTitle" slot-scope="{calendarEvent, details}">
-        <div>
-          <v-icon
-            class="ds-ev-icon"
-            v-if="details.icon"
-            size="14"
-            :style="{color: details.forecolor}"
-          >{{ details.icon }}</v-icon>
-          <strong class="ds-ev-title">{{ details.title }}</strong>
-        </div>
-        <div class="ds-ev-description">{{ getCalendarTime( calendarEvent ) }}</div>
-      </template>
-
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
-            <v-btn rounded color="primary" dark>Загрузить расписание</v-btn>
-            <v-flex xs12>
+            <v-btn block id="downloadShedule" round color="success" dark>Download</v-btn>
+            <!-- <v-flex xs12>
               <v-checkbox box label="Read Only?" v-model="readOnly"></v-checkbox>
-            </v-flex>
+            </v-flex>-->
             <v-flex xs12>
               <v-select
                 label="Language"
@@ -304,5 +291,21 @@ html,
 #app {
   width: 100%;
   height: 100%;
+}
+#downloadShedule {
+  background-color: bisque;
+}
+.v-toolbar__content {
+  background-color: rgb(76, 175, 80);
+  color: white;
+}
+.v-btn .v-btn__content .v-icon {
+  color: white;
+}
+/* .v-btn__content {
+  color: wheat;
+} */
+.ds-day-picker .ds-week-header .subtitle[data-v-941fe142]{
+  color: black;
 }
 </style>

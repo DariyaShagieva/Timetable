@@ -126,7 +126,7 @@ export default {
 .ds-day-today {
 
   .ds-agenda-lines {
-    color: #4285f4;
+    color: rgb(76, 175, 80);
     font-weight: bold;
   }
 }
