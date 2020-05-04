@@ -32,11 +32,13 @@
         </v-container>
       </template>
     </ds-calendar-app>
+    <router-link to="login">Account</router-link>
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import { dsMerge } from "./functions";
+import { dsMerge } from "../functions";
 import { Calendar, Weekday, Month, Sorts } from "dayspan";
 import * as moment from "moment";
 
