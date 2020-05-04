@@ -19,24 +19,31 @@ moment.lang('en')
 Vue.config.productionTip = false
 
 Vue.use(Vuetify);
+// Vue.use(VueRouter);
+
+// var router = new VueRouter({
+//   routes: [
+//     { path: '/login', componenst: LoginPage}
+//   ]
+// })
 
 Vue.use(DaySpanVuetify,
-{
-  data:
   {
-    locales: { en, ru }
-  },
-  methods:
-  {
-    getDefaultEventColor()
+    data:
     {
-      return '#1976d2';
+      locales: { en, ru }
+    },
+    methods:
+    {
+      getDefaultEventColor() {
+        return '#1976d2';
+      }
     }
-  }
-});
+  });
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  // router: router,
   render: h => h(App)
 })

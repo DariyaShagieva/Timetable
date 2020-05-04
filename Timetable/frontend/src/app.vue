@@ -2,7 +2,6 @@
   <v-app id="dayspan" v-cloak>
     <ds-calendar-app ref="app" :calendar="calendar" :read-only="readOnly" @change="saveState">
       <template id="title" slot="title">TimeTable ITIS</template>
-
       <template slot="eventPopover" slot-scope="slotData">
         <ds-calendar-event-popover v-bind="slotData" :read-only="readOnly" @finish="saveState"></ds-calendar-event-popover>
       </template>
@@ -20,10 +19,7 @@
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
-            <v-btn round block id="downloadShedule" round color="success" dark>Download</v-btn>
-            <!-- <v-flex xs12>
-              <v-checkbox box label="Read Only?" v-model="readOnly"></v-checkbox>
-            </v-flex>-->
+            <v-btn round block id="downloadShedule" color="success" dark>Download</v-btn>
             <v-flex xs12>
               <v-select
                 label="Language"
@@ -301,7 +297,7 @@ html,
 /* .v-btn__content {
   color: wheat;
 } */
-.ds-day-picker .ds-week-header .subtitle[data-v-941fe142]{
+.ds-day-picker .ds-week-header .subtitle[data-v-941fe142] {
   color: black;
 }
 </style>
