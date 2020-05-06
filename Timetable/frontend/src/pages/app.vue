@@ -19,12 +19,34 @@
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
-             <v-flex xs12>
-                <v-btn round block id="joinChannel" color="primary">Join to channel</v-btn>
-             </v-flex>
-              <v-flex xs12>
-                  <v-btn round block id="downloadShedule" color="primary">Download</v-btn>
-              </v-flex>
+            <v-flex xs12>
+              <v-btn
+                round
+                block
+                id="joinChannel"
+                color="primary"
+                @click.stop="dialog = true"
+              >Join to channel</v-btn>
+            </v-flex>
+            <v-dialog v-model="dialog" max-width="290">
+              <v-card>
+                <v-card-title class="headline">Join to channel</v-card-title>
+                <v-flex>
+                  <v-card-text>Введите код для идентификации</v-card-text>
+                  <v-card-text>53563890567</v-card-text>
+                </v-flex>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn color="blue darken-1" round text @click="dialog = false">Отмена</v-btn>
+
+                  <v-btn color="blue darken-1" round text ><a style="text-decoration: none;color:black" href="tg://join?invite=https://t.me/1356101762">Перейти на канал</a></v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-flex xs12>
+              <v-btn round block id="downloadShedule" color="primary">Download</v-btn>
+            </v-flex>
             <v-flex xs12>
               <v-select
                 label="Language"
@@ -51,11 +73,12 @@ export default {
     storeKey: "dayspanState",
     calendar: Calendar.months(),
     readOnly: false,
+    dialog: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
       { value: "ru", text: "Russia" },
       { value: "en", text: "English" }
-    ],
+    ]
   }),
   mounted() {
     window.app = this.$refs.app;
