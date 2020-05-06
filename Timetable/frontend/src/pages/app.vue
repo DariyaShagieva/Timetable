@@ -19,7 +19,12 @@
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
-            <v-btn round block id="downloadShedule" color="success" dark>Download</v-btn>
+             <v-flex xs12>
+                <v-btn round block id="joinChannel" color="primary">Join to channel</v-btn>
+             </v-flex>
+              <v-flex xs12>
+                  <v-btn round block id="downloadShedule" color="primary">Download</v-btn>
+              </v-flex>
             <v-flex xs12>
               <v-select
                 label="Language"
