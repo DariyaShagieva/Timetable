@@ -32,8 +32,6 @@
         </v-container>
       </template>
     </ds-calendar-app>
-    <router-link to="login">Account</router-link>
-    <router-view />
   </v-app>
 </template>
 
