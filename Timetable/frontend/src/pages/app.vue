@@ -83,6 +83,75 @@ export default {
     locales: [
       { value: "ru", text: "Russia" },
       { value: "en", text: "English" }
+    ],
+    defaultEvents: [
+      {
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.MONDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.TUESDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.WEDNESDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.THURSDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.FRIDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.SATURDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
     ]
   }),
   mounted() {
@@ -124,6 +193,9 @@ export default {
         }
       } catch (e) {
         console.log(e);
+      }
+      if (!state.events || !state.events.length) {
+        state.events = this.defaultEvents;
       }
       let defaults = this.$dayspan.getDefaultEventDetails();
       state.events.forEach(ev => {
