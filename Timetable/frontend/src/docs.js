@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import DaySpanVuetify from './plugin'
-import App from './app'
+import App from './pages/app'
 
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -15,17 +15,11 @@ import 'moment/lang/ca'
 import 'moment/lang/nl'
 import * as moment from 'moment'
 moment.lang('en')
+import router from './router/index'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuetify);
-// Vue.use(VueRouter);
-
-// var router = new VueRouter({
-//   routes: [
-//     { path: '/login', componenst: LoginPage}
-//   ]
-// })
 
 Vue.use(DaySpanVuetify,
   {
@@ -41,9 +35,8 @@ Vue.use(DaySpanVuetify,
     }
   });
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
-  // router: router,
+  router,
   render: h => h(App)
 })
