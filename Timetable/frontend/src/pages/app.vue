@@ -20,6 +20,14 @@
         <v-container fluid>
           <v-layout wrap align-center>
             <v-flex xs12>
+              <v-select
+                label="Language"
+                :items="locales"
+                v-model="currentLocale"
+                @input="setLocale"
+              ></v-select>
+            </v-flex>
+            <v-flex xs12>
               <v-btn
                 round
                 block
@@ -40,20 +48,17 @@
 
                   <v-btn color="blue darken-1" round text @click="dialog = false">Отмена</v-btn>
 
-                  <v-btn color="blue darken-1" round text ><a style="text-decoration: none;color:black" href="tg://join?invite=https://t.me/1356101762">Перейти на канал</a></v-btn>
+                  <v-btn color="blue darken-1" round text>
+                    <a
+                      style="text-decoration: none;color:black"
+                      href="tg://join?invite=https://t.me/1356101762"
+                    >Перейти на канал</a>
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
             <v-flex xs12>
-              <v-btn round block id="downloadShedule" color="primary">Download</v-btn>
-            </v-flex>
-            <v-flex xs12>
-              <v-select
-                label="Language"
-                :items="locales"
-                v-model="currentLocale"
-                @input="setLocale"
-              ></v-select>
+              <v-btn round block id="downloadShedule" color="primary">Upload timetable</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
