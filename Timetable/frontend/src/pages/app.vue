@@ -27,11 +27,13 @@
                 v-model="currentLocale"
                 @input="setLocale"
               ></v-select>
-            </v-flex>      
+            </v-flex>
           </v-layout>
         </v-container>
       </template>
     </ds-calendar-app>
+    <router-link to="login">Account</router-link>
+    <router-view />
   </v-app>
 </template>
 
@@ -50,7 +52,8 @@ export default {
     locales: [
       { value: "ru", text: "Russia" },
       { value: "en", text: "English" }
-    ],}),
+    ],
+  }),
   mounted() {
     window.app = this.$refs.app;
     this.loadState();
