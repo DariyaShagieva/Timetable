@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.services.timetable.parsers.Days;
 
 import javax.persistence.*;
 
@@ -27,7 +28,8 @@ public class TimeTable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "timeTable")
     private Teacher teacher;
 
-    private String day;
+    @Enumerated(value = EnumType.STRING)
+    private Days day;
 
     @Column(name = "time_table_group")
     private String group;
