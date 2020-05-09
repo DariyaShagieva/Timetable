@@ -1,4 +1,4 @@
-package ru.itis.KfuTimeTableBot;
+package ru.itis.KfuTimeTableBot.bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +19,7 @@ public class TimeTableBot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
+
         if(isUserCode(message.getText())) {
 
         }
