@@ -28,6 +28,8 @@ public class User {
 
     private String lastName;
 
+    private String telegramCode;
+
     @Column(name = "user_group")
     private String group;
 
