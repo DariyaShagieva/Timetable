@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.itis.KfuTimeTableBot.repository.UserBotRepository;
+import ru.itis.KfuTimeTableBot.service.UpdateHandler;
+import ru.itis.KfuTimeTableBot.service.UserBotService;
 
 
 @Component
@@ -17,12 +20,17 @@ public class TimeTableBot extends TelegramLongPollingBot {
     private final static String BOT_USERNAME = "KfuTimeTableBot";
 
 
+
+    @Autowired
+    private UserBotService userBotService;
+
+
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
-
-        if(isUserCode(message.getText())) {
-
+        if(message.getText().contains("kfu:")) {
+            userBotService.saveNewUserBot(message);
         }
+
     }
 
     @Override
@@ -30,13 +38,7 @@ public class TimeTableBot extends TelegramLongPollingBot {
         return BOT_USERNAME;
     }
 
-    private boolean isUserCode(String message) {
-        if(message.contains("kfu:")) {
-            String userCode = message.concat("kfu:");
-            return true;
-        } else return false;
 
-    }
 
     @Override
     public String getBotToken() {

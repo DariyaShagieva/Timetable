@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserBot {
+public class   UserBot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package ru.itis.KfuTimeTableBot;
+package ru.itis.KfuTimeTableBot.service;
 
 
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -8,5 +8,4 @@ public interface UpdateHandler {
 
     void handlerUpdate(Update update);
 
-    boolean checkCode(Message message);
 }
