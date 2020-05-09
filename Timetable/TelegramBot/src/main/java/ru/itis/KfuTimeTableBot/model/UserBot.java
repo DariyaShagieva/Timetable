@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.services.timetable.model.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -24,5 +22,9 @@ public class UserBot {
     private Long chatId;
 
     private Integer stateId;
+
+    @OneToOne
+    @JoinColumn(name = "user_bot_id", referencedColumnName = "user_timetable_id")
+    private User user;
 
 }
