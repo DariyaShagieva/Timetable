@@ -1,11 +1,10 @@
-/*
-package ru.itis.services.timetable.services;
+package ru.itis.KfuTimeTableBot.service.userTimetable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import ru.itis.KfuTimeTableBot.repository.userTimetable.UserRepository;
 import ru.itis.services.timetable.model.user.User;
-import ru.itis.services.timetable.repositories.UserRepository;
+
 
 import javax.persistence.EntityNotFoundException;
 
@@ -27,4 +26,3 @@ public class UserServiceImpl implements UserService {
 
 
 }
-*/

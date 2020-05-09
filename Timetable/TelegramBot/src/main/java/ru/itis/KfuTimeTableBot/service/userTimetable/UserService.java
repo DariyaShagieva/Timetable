@@ -1,5 +1,4 @@
-/*
-package ru.itis.services.timetable.services;
+package ru.itis.KfuTimeTableBot.service.userTimetable;
 
 import ru.itis.services.timetable.model.user.User;
 
@@ -9,4 +8,3 @@ public interface UserService {
 
     void saveNewUser(User user);
 }
-*/

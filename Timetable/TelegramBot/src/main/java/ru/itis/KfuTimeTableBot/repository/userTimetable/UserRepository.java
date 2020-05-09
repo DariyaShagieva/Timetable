@@ -1,5 +1,4 @@
-/*
-package ru.itis.services.timetable.repositories;
+package ru.itis.KfuTimeTableBot.repository.userTimetable;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +11,3 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByTelegramCode(String code);
 
 }
-*/

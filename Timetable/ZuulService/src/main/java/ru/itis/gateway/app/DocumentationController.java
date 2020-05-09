@@ -1,7 +1,7 @@
 package ru.itis.gateway.app;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.success;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@success
+@Primary
 @EnableAutoConfiguration
 public class DocumentationController implements SwaggerResourcesProvider {
 
@@ -20,7 +20,7 @@ public class DocumentationController implements SwaggerResourcesProvider {
         resources.add(swaggerResource("user", "/api/timetable/v2/api-docs", "2.0"));
         return resources;
     }
- 
+
     private SwaggerResource swaggerResource(String name, String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
@@ -28,5 +28,5 @@ public class DocumentationController implements SwaggerResourcesProvider {
         swaggerResource.setSwaggerVersion(version);
         return swaggerResource;
     }
- 
+
 }
