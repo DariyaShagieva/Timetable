@@ -2,7 +2,6 @@
   <v-app id="dayspan" v-cloak>
     <ds-calendar-app ref="app" :calendar="calendar" :read-only="readOnly" @change="saveState">
       <template id="title" slot="title">TimeTable ITIS</template>
-
       <template slot="eventPopover" slot-scope="slotData">
         <ds-calendar-event-popover v-bind="slotData" :read-only="readOnly" @finish="saveState"></ds-calendar-event-popover>
       </template>
@@ -20,10 +19,6 @@
       <template slot="drawerBottom">
         <v-container fluid>
           <v-layout wrap align-center>
-            <v-btn round block id="downloadShedule" round color="success" dark>Download</v-btn>
-            <!-- <v-flex xs12>
-              <v-checkbox box label="Read Only?" v-model="readOnly"></v-checkbox>
-            </v-flex>-->
             <v-flex xs12>
               <v-select
                 label="Language"
@@ -31,6 +26,39 @@
                 v-model="currentLocale"
                 @input="setLocale"
               ></v-select>
+            </v-flex>
+            <v-flex xs12>
+              <v-btn
+                round
+                block
+                id="joinChannel"
+                color="primary"
+                @click.stop="dialog = true"
+              >Join to channel</v-btn>
+            </v-flex>
+            <v-dialog v-model="dialog" max-width="290">
+              <v-card>
+                <v-card-title class="headline">Join to channel</v-card-title>
+                <v-flex>
+                  <v-card-text>Введите код для идентификации</v-card-text>
+                  <v-card-text>53563890567</v-card-text>
+                </v-flex>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn color="blue darken-1" round text @click="dialog = false">Отмена</v-btn>
+
+                  <v-btn color="blue darken-1" round text>
+                    <a
+                      style="text-decoration: none;color:black"
+                      href="tg://join?invite=https://t.me/1356101762"
+                    >Перейти на канал</a>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-flex xs12>
+              <v-btn round block id="downloadShedule" color="primary">Upload timetable</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -40,7 +68,7 @@
 </template>
 
 <script>
-import { dsMerge } from "./functions";
+import { dsMerge } from "../functions";
 import { Calendar, Weekday, Month, Sorts } from "dayspan";
 import * as moment from "moment";
 
@@ -50,6 +78,7 @@ export default {
     storeKey: "dayspanState",
     calendar: Calendar.months(),
     readOnly: false,
+    dialog: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
       { value: "ru", text: "Russia" },
@@ -58,178 +87,71 @@ export default {
     defaultEvents: [
       {
         data: {
-          title: "Weekly Meeting",
-          color: "#3F51B5"
+          title: "Философия",
+          type: "Лекция"
         },
         schedule: {
           dayOfWeek: [Weekday.MONDAY],
           times: [9],
-          duration: 30,
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.TUESDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.WEDNESDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.THURSDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.FRIDAY],
+          times: [9],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },{
+        data: {
+          title: "Философия",
+          type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.SATURDAY],
+          times: [9],
+          duration: 90,
           durationUnit: "minutes"
         }
       },
-      {
-        data: {
-          title: "First Weekend",
-          color: "#4CAF50"
-        },
-        schedule: {
-          weekspanOfMonth: [0],
-          dayOfWeek: [Weekday.FRIDAY],
-          duration: 3,
-          durationUnit: "days"
-        }
-      },
-      {
-        data: {
-          title: "End of Month",
-          color: "#000000"
-        },
-        schedule: {
-          lastDayOfMonth: [1],
-          duration: 1,
-          durationUnit: "hours"
-        }
-      },
-      {
-        data: {
-          title: "Mother's Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.MAY],
-          dayOfWeek: [Weekday.SUNDAY],
-          weekspanOfMonth: [1]
-        }
-      },
-      {
-        data: {
-          title: "New Year's Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JANUARY],
-          dayOfMonth: [1]
-        }
-      },
-      {
-        data: {
-          title: "Inauguration Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JANUARY],
-          dayOfMonth: [20]
-        }
-      },
-      {
-        data: {
-          title: "Martin Luther King, Jr. Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JANUARY],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [2]
-        }
-      },
-      {
-        data: {
-          title: "George Washington's Birthday",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.FEBRUARY],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [2]
-        }
-      },
-      {
-        data: {
-          title: "Memorial Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.MAY],
-          dayOfWeek: [Weekday.MONDAY],
-          lastWeekspanOfMonth: [0]
-        }
-      },
-      {
-        data: {
-          title: "Independence Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JULY],
-          dayOfMonth: [4]
-        }
-      },
-      {
-        data: {
-          title: "Labor Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.SEPTEMBER],
-          dayOfWeek: [Weekday.MONDAY],
-          lastWeekspanOfMonth: [0]
-        }
-      },
-      {
-        data: {
-          title: "Columbus Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.OCTOBER],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [1]
-        }
-      },
-      {
-        data: {
-          title: "Veterans Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.NOVEMBER],
-          dayOfMonth: [11]
-        }
-      },
-      {
-        data: {
-          title: "Thanksgiving Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.NOVEMBER],
-          dayOfWeek: [Weekday.THURSDAY],
-          weekspanOfMonth: [3]
-        }
-      },
-      {
-        data: {
-          title: "Christmas Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.DECEMBER],
-          dayOfMonth: [25]
-        }
-      }
     ]
   }),
   mounted() {
@@ -301,7 +223,7 @@ html,
 /* .v-btn__content {
   color: wheat;
 } */
-.ds-day-picker .ds-week-header .subtitle[data-v-941fe142]{
+.ds-day-picker .ds-week-header .subtitle[data-v-941fe142] {
   color: black;
 }
 </style>
