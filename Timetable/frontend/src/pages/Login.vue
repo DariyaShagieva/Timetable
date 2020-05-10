@@ -130,6 +130,7 @@
           </v-tabs>
         </div>
       </v-dialog>
+        <router-view></router-view>
     </v-app>
   </div>
 </template>

@@ -117,7 +117,7 @@ export default {
 
     weekday()
     {
-      return this.day.format( this.formats.weekday );
+      return this.day.format( this.formats.weekday);
     },
 
     hasPlaceholder()
