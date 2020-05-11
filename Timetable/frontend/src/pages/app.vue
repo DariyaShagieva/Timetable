@@ -28,10 +28,10 @@
               ></v-select>
             </v-flex>
             <v-flex xs12>
-              <v-btn round block id="login" color="primary" @click.stop="dialog = true">Login</v-btn>
+              <v-btn round block id="login" color="primary" @click.stop="account = true">Login</v-btn>
             </v-flex>
             <v-row justify="center">
-              <v-dialog v-model="dialog" persistent max-width="600px">
+              <v-dialog v-model="account" persistent max-width="600px">
                 <v-card>
                   <v-card-title>
                     <span class="headline">Profile</span>
@@ -59,15 +59,14 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click="account = false">Close</v-btn>
+                    <v-btn color="blue darken-1" text @click="account = false">Save</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
             </v-row>
-            <v-flex xs12>
-            </v-flex>
-            
+            <v-flex xs12></v-flex>
+
             <v-flex xs12>
               <v-btn
                 round
@@ -119,7 +118,9 @@ export default {
     storeKey: "dayspanState",
     calendar: Calendar.months(),
     readOnly: false,
+    telegram: false,
     dialog: false,
+    account: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
       { value: "ru", text: "Russia" },
