@@ -28,7 +28,14 @@
               ></v-select>
             </v-flex>
             <v-flex xs12>
-              <v-btn round block id="login" color="primary" @click.stop="account = true">Login</v-btn>
+              <v-btn
+                style="color:white"
+                round
+                block
+                id="login"
+                color="#04859D"
+                @click.stop="account = true"
+              >Login</v-btn>
             </v-flex>
             <v-row justify="center">
               <v-dialog v-model="account" persistent max-width="600px">
@@ -62,8 +69,14 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text v-on:click="closeLogin()">Close</v-btn>
-                    <v-btn color="blue darken-1" text v-on:click="login()">Login</v-btn>
+                    <v-btn style="color:white" color="#04859D" text v-on:click="closeLogin()">Close</v-btn>
+                    <v-btn
+                      style="color:white"
+                      color="#04859D"
+                      v-model="readOnly"
+                      text
+                      v-on:click="login()"
+                    >Login</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -75,7 +88,8 @@
                 round
                 block
                 id="joinChannel"
-                color="primary"
+                color="#04859D"
+                style="color:white"
                 @click.stop="dialog = true"
               >Join to channel</v-btn>
             </v-flex>
@@ -89,9 +103,15 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
 
-                  <v-btn color="blue darken-1" round text @click="dialog = false">Отмена</v-btn>
+                  <v-btn
+                    style="color:white"
+                    color="#04859D"
+                    round
+                    text
+                    @click="dialog = false"
+                  >Отмена</v-btn>
 
-                  <v-btn color="blue darken-1" round text>
+                  <v-btn style="color:white" color="#04859D" round text>
                     <a
                       style="text-decoration: none;color:black"
                       href="tg://join?invite=https://t.me/1356101762"
@@ -101,7 +121,13 @@
               </v-card>
             </v-dialog>
             <v-flex xs12>
-              <v-btn round block id="downloadShedule" color="primary">Upload timetable</v-btn>
+              <v-btn
+                style="color:white"
+                round
+                block
+                id="downloadShedule"
+                color="#04859D"
+              >Upload timetable</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -120,7 +146,7 @@ export default {
   data: vm => ({
     storeKey: "dayspanState",
     calendar: Calendar.months(),
-    readOnly: false,
+    readOnly: true,
     dialog: false,
     input: {
       email: "",
@@ -316,12 +342,14 @@ export default {
     },
     login() {
       if (this.input.email != "" && this.input.password != "") {
+        this.readOnly = false;
         console.log(this.input.email, this.input.password);
       } else {
         console.log("A email and password must be present");
       }
     },
     closeLogin() {
+      this.readOnly = true;
       this.account = false;
       this.email = "";
       this.password = "";
@@ -343,9 +371,13 @@ html,
 .v-btn round .v-btn__content .v-icon {
   color: white;
 }
-/* .v-btn__content {
-  color: wheat;
-} */
+.v-toolbar__content {
+  background-color: #37b6ce;
+  color: #015666;
+}
+.title .ds-light-forecolor {
+  color: #015666;
+}
 .ds-day-picker .ds-week-header .subtitle[data-v-941fe142] {
   color: black;
 }

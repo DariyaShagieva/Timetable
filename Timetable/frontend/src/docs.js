@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import DaySpanVuetify from './plugin'
-import App from './pages/app'
+import App from './pages/TimeTable'
 
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -14,7 +14,6 @@ import 'moment/locale/ru'
 
 import moment from "moment"
 moment.lang('ru')
-import router from './router/index'
 
 Vue.config.productionTip = false
 
@@ -29,13 +28,12 @@ Vue.use(DaySpanVuetify,
     methods:
     {
       getDefaultEventColor() {
-        return '#1976d2';
+        return '#015666';
       }
     }
   });
 
 new Vue({
   el: '#app',
-  router,
   render: h => h(App)
 })
