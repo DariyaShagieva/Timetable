@@ -34,33 +34,36 @@
               <v-dialog v-model="account" persistent max-width="600px">
                 <v-card>
                   <v-card-title>
-                    <span class="headline">Profile</span>
+                    <span class="headline">Login</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container>
                       <v-row>
-                        <v-col cols="12" sm="6" md="4">
-                          <v-text-field label="Name*" required></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
+                        <v-col cols="12">
                           <v-text-field
-                            label="Second name*"
-                            hint="example of helper text only on focus"
+                            prepend-icon="person"
+                            label="Email*"
+                            required
+                            v-model="input.email"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
-                          <v-text-field label="Email*" required></v-text-field>
-                        </v-col>
-                        <v-col cols="12">
-                          <v-text-field label="Password*" type="password" required></v-text-field>
+                          <v-text-field
+                            prepend-icon="lock"
+                            name="Password"
+                            label="Password*"
+                            v-model="input.password"
+                            type="password"
+                            required
+                          ></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="account = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="account = false">Save</v-btn>
+                    <v-btn color="blue darken-1" text v-on:click="closeLogin()">Close</v-btn>
+                    <v-btn color="blue darken-1" text v-on:click="login()">Login</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -118,8 +121,11 @@ export default {
     storeKey: "dayspanState",
     calendar: Calendar.months(),
     readOnly: false,
-    telegram: false,
     dialog: false,
+    input: {
+      email: "",
+      password: ""
+    },
     account: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
@@ -134,14 +140,27 @@ export default {
         },
         schedule: {
           dayOfWeek: [Weekday.MONDAY],
-          times: [9],
+          times: [15],
           duration: 90,
           durationUnit: "minutes"
         }
       },
       {
         data: {
-          title: "Философия",
+          title: "UX",
+          type: "Лекция",
+          color: "#2196F3"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.MONDAY],
+          times: [16],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "Коррупция",
           type: "Лекция"
         },
         schedule: {
@@ -153,48 +172,77 @@ export default {
       },
       {
         data: {
-          title: "Философия",
+          title: "Основы предпринимательства",
+          color: "#21F6F5",
           type: "Лекция"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.TUESDAY],
+          times: [11],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "Анализ данных",
+          type: "Лекция",
+          color: "#B1009B"
         },
         schedule: {
           dayOfWeek: [Weekday.WEDNESDAY],
-          times: [9],
+          times: [14],
           duration: 90,
           durationUnit: "minutes"
         }
       },
       {
         data: {
-          title: "Философия",
-          type: "Лекция"
+          title: "Анализ данных",
+          type: "Лекция",
+          color: "#B1239B"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.WEDNESDAY],
+          times: [16],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "Архитектура систем",
+          type: "Лекция",
+          color: "#FF9200"
         },
         schedule: {
           dayOfWeek: [Weekday.THURSDAY],
-          times: [9],
+          times: [11],
           duration: 90,
           durationUnit: "minutes"
         }
       },
       {
         data: {
-          title: "Философия",
-          type: "Лекция"
+          title: "Информационная безопасность",
+          type: "Лекция",
+          color: "#FFA500"
         },
         schedule: {
           dayOfWeek: [Weekday.FRIDAY],
-          times: [9],
+          times: [10],
           duration: 90,
           durationUnit: "minutes"
         }
       },
       {
         data: {
-          title: "Философия",
-          type: "Лекция"
+          title: "Физическая культура",
+          color: "#1DD300"
         },
         schedule: {
           dayOfWeek: [Weekday.SATURDAY],
-          times: [9],
+          times: [8],
           duration: 90,
           durationUnit: "minutes"
         }
@@ -205,6 +253,23 @@ export default {
     window.app = this.$refs.app;
     this.loadState();
   },
+  // computed: {
+  //   passwordErrors() {
+  //     const errors = [];
+  //     if (!this.$v.name.$dirty) return errors;
+  //     !this.$v.name.minLength &&
+  //       errors.push("Name must be at most 10 characters long");
+  //     !this.$v.name.required && errors.push("Name is required.");
+  //     return errors;
+  //   },
+  //   emailErrors() {
+  //     const errors = [];
+  //     if (!this.$v.email.$dirty) return errors;
+  //     !this.$v.email.email && errors.push("Must be valid e-mail");
+  //     !this.$v.email.required && errors.push("E-mail is required");
+  //     return errors;
+  //   }
+  // },
   methods: {
     getCalendarTime(calendarEvent) {
       let sa = calendarEvent.start.format("a");
@@ -241,14 +306,25 @@ export default {
       } catch (e) {
         console.log(e);
       }
-      if (!state.events || !state.events.length) {
-        state.events = this.defaultEvents;
-      }
+
+      state.events = this.defaultEvents;
       let defaults = this.$dayspan.getDefaultEventDetails();
       state.events.forEach(ev => {
         ev.data = dsMerge(ev.data, defaults);
       });
       this.$refs.app.setState(state);
+    },
+    login() {
+      if (this.input.email != "" && this.input.password != "") {
+        console.log(this.input.email, this.input.password);
+      } else {
+        console.log("A email and password must be present");
+      }
+    },
+    closeLogin() {
+      this.account = false;
+      this.email = "";
+      this.password = "";
     }
   }
 };

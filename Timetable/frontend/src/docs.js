@@ -10,11 +10,10 @@ import './styles/app.scss'
 import ru from './locales/ru'
 import en from './locales/en'
 
-import 'moment/lang/fr'
-import 'moment/lang/ca'
-import 'moment/lang/nl'
-import * as moment from 'moment'
-moment.lang('en')
+import 'moment/locale/ru'
+
+import moment from "moment"
+moment.lang('ru')
 import router from './router/index'
 
 Vue.config.productionTip = false
