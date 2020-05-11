@@ -38,46 +38,100 @@
               >Login</v-btn>
             </v-flex>
             <v-row justify="center">
-              <v-dialog v-model="account" persistent max-width="600px">
-                <v-card>
-                  <v-card-title>
-                    <span class="headline">Login</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container>
-                      <v-row>
-                        <v-col cols="12">
-                          <v-text-field
-                            prepend-icon="person"
-                            label="Email*"
-                            required
-                            v-model="input.email"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12">
-                          <v-text-field
-                            prepend-icon="lock"
-                            name="Password"
-                            label="Password*"
-                            v-model="input.password"
-                            type="password"
-                            required
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-                    </v-container>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn style="color:white" color="#04859D" text v-on:click="closeLogin()">Close</v-btn>
-                    <v-btn
-                      style="color:white"
-                      color="#04859D"
-                      v-model="readOnly"
-                      text
-                      v-on:click="login()"
-                    >Login</v-btn>
-                  </v-card-actions>
+              <v-dialog  v-model="account" persistent max-width="600px">
+                <v-card class="account">
+                  <v-tabs vertical style="padding:10px 10px 10px">
+                    <v-tab>Login</v-tab>
+                    <v-tab>Register</v-tab>
+                    <v-tab-item>
+                      <v-card-text>
+                        <v-container>
+                          <v-row>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="person"
+                                label="Email*"
+                                required
+                                v-model="input.email"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="lock"
+                                name="Password"
+                                label="Password*"
+                                v-model="input.password"
+                                type="password"
+                                required
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          style="color:white"
+                          color="#04859D"
+                          text
+                          round
+                          v-on:click="closeLogin()"
+                        >Close</v-btn>
+                        <v-btn
+                        round
+                          style="color:white"
+                          color="#04859D"
+                          v-model="readOnly"
+                          text
+                          v-on:click="login()"
+                        >Login</v-btn>
+                      </v-card-actions>
+                    </v-tab-item>
+                    <v-tab-item>
+                      <v-card-text>
+                        <v-container>
+                          <v-row>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="person"
+                                label="Email*"
+                                required
+                                v-model="input.email"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="lock"
+                                name="Password"
+                                label="Password*"
+                                v-model="input.password"
+                                type="password"
+                                required
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          style="color:white"
+                          color="#04859D"
+                          text
+                          round
+                          v-on:click="closeLogin()"
+                        >Close</v-btn>
+                        <v-btn
+                          style="color:white"
+                          color="#04859D"
+                          v-model="readOnly"
+                          text
+                          round
+                          v-on:click="register()"
+                        >Register</v-btn>
+                      </v-card-actions>
+                    </v-tab-item>
+                  </v-tabs>
                 </v-card>
               </v-dialog>
             </v-row>
@@ -152,6 +206,11 @@ export default {
       email: "",
       password: ""
     },
+    tab: null,
+    items: [
+      { tab: "Login", content: "1" },
+      { tab: "Register", content: "2" }
+    ],
     account: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
@@ -279,23 +338,6 @@ export default {
     window.app = this.$refs.app;
     this.loadState();
   },
-  // computed: {
-  //   passwordErrors() {
-  //     const errors = [];
-  //     if (!this.$v.name.$dirty) return errors;
-  //     !this.$v.name.minLength &&
-  //       errors.push("Name must be at most 10 characters long");
-  //     !this.$v.name.required && errors.push("Name is required.");
-  //     return errors;
-  //   },
-  //   emailErrors() {
-  //     const errors = [];
-  //     if (!this.$v.email.$dirty) return errors;
-  //     !this.$v.email.email && errors.push("Must be valid e-mail");
-  //     !this.$v.email.required && errors.push("E-mail is required");
-  //     return errors;
-  //   }
-  // },
   methods: {
     getCalendarTime(calendarEvent) {
       let sa = calendarEvent.start.format("a");
@@ -348,6 +390,14 @@ export default {
         console.log("A email and password must be present");
       }
     },
+    register() {
+      if (this.input.email != "" && this.input.password != "") {
+        this.readOnly = false;
+        console.log(this.input.email, this.input.password);
+      } else {
+        console.log("A email and password must be present");
+      }
+    },
     closeLogin() {
       this.readOnly = true;
       this.account = false;
@@ -367,6 +417,9 @@ html,
 }
 #downloadShedule {
   background-color: bisque;
+}
+.account {
+  border-radius: 10px;
 }
 .v-btn round .v-btn__content .v-icon {
   color: white;
