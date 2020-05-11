@@ -372,7 +372,6 @@ html,
   color: white;
 }
 .v-toolbar__content {
-  background-color: #37b6ce;
   color: #015666;
 }
 .title .ds-light-forecolor {
