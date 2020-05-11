@@ -38,7 +38,7 @@
               >Login</v-btn>
             </v-flex>
             <v-row justify="center">
-              <v-dialog  v-model="account" persistent max-width="600px">
+              <v-dialog v-model="account" persistent max-width="600px">
                 <v-card class="account">
                   <v-tabs vertical style="padding:10px 10px 10px">
                     <v-tab>Login</v-tab>
@@ -78,7 +78,7 @@
                           v-on:click="closeLogin()"
                         >Close</v-btn>
                         <v-btn
-                        round
+                          round
                           style="color:white"
                           color="#04859D"
                           v-model="readOnly"
@@ -385,6 +385,7 @@ export default {
     login() {
       if (this.input.email != "" && this.input.password != "") {
         this.readOnly = false;
+        this.account = false;
         console.log(this.input.email, this.input.password);
       } else {
         console.log("A email and password must be present");
@@ -393,6 +394,7 @@ export default {
     register() {
       if (this.input.email != "" && this.input.password != "") {
         this.readOnly = false;
+        this.account = false;
         console.log(this.input.email, this.input.password);
       } else {
         console.log("A email and password must be present");
