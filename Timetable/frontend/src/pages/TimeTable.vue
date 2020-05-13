@@ -221,7 +221,6 @@ export default {
       {
         data: {
           title: "Философия",
-          type: "Лекция"
         },
         schedule: {
           dayOfWeek: [Weekday.MONDAY],

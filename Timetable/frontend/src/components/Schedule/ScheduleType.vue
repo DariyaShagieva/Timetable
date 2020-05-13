@@ -1,6 +1,9 @@
 <template>
-
-  <v-select single-line solo flat persistent-hint
+  <v-select
+    single-line
+    solo
+    flat
+    persistent-hint
     :items="types"
     :hint="typeHint"
     :hide-details="hideHint"
@@ -11,40 +14,34 @@
     item-value="value"
     @click:append-outer="custom"
   ></v-select>
-
 </template>
 
 <script>
-import { Day, Schedule, Pattern, Patterns } from 'dayspan';
+import { Day, Schedule, Pattern, Patterns } from "dayspan";
+import moment from "moment";
 
 export default {
+  name: "dsScheduleType",
 
-  name: 'dsScheduleType',
-
-  props:
-  {
-    day:
-    {
+  props: {
+    day: {
       required: true,
       type: Day
     },
 
-    schedule:
-    {
+    schedule: {
       required: true,
       type: Schedule
     },
 
-    readOnly:
-    {
+    readOnly: {
       type: Boolean,
       default: false
     },
 
-    formats:
-    {
+    formats: {
       validate(x) {
-        return this.$dsValidate(x, 'formats');
+        return this.$dsValidate(x, "formats");
       },
       default() {
         return this.$dsDefaults().formats;
@@ -53,125 +50,150 @@ export default {
   },
 
   data: () => ({
-    type: ''
+    type: ""
   }),
 
-  watch:
-  {
-    schedule:
-    {
-      handler: 'updateType',
+  watch: {
+    schedule: {
+      handler: "updateType",
       immediate: true
     },
 
-    type: 'applyType'
+    type: "applyType"
   },
 
-  computed:
-  {
-    hideHint()
-    {
-      return this.type !== 'none' && this.type !== 'custom';
+  computed: {
+    hideHint() {
+      return this.type !== "none" && this.type !== "custom";
     },
 
-    typeHint()
-    {
-      if (this.type === 'none')
-      {
-        return this.day.format( this.formats.date );
+    typeHint() {
+      if (this.type === "none") {
+        return this.day.format(this.formats.date);
       }
 
-      if (this.type === 'custom')
-      {
-        return this.$dayspan.getScheduleDescription( this.schedule );
+      if (this.type === "custom") {
+        console.log(this.$dayspan.getScheduleDescription(this.schedule));
+        return this.$dayspan.getScheduleDescription(this.schedule);
       }
 
-      return '';
+      return "";
     },
 
-    types()
-    {
-      if (!this.day)
-      {
+    types() {
+      if (!this.day) {
         return [];
       }
-
-      return Patterns
-        .filter((pattern) => pattern.listed)
-        .map((pattern) => ({
-          label: pattern.describe( this.day ),
-          value: pattern.name
-        }))
-      ;
+      const weekdays = [
+        "понедельник",
+        "вторник",
+        "среда",
+        "четверг",
+        "пятница",
+        "суббота",
+        "воскресение"
+      ];
+      const months = [
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря"
+      ];
+      const russian = [
+        "Не повторять",
+        "Каждый день",
+        "Каждый " + weekdays[this.day.dayOfWeek],
+        "Ежемесячно " +
+          this.day.dayOfMonth +
+          " числа в " +
+          weekdays[this.day.dayOfWeek],
+        "Ежегодно " + this.day.dayOfMonth + " " + months[this.day.month],
+        "Ежегодно " +
+          this.day.dayOfMonth +
+          " числа в " +
+          weekdays[this.day.dayOfWeek] +
+          " в " +
+          months[this.day.month],
+        "Все будни",
+        "Ежемесячно " + this.day.dayOfMonth + " числа ",
+        "Обычно..."
+      ];
+      return Patterns.filter(pattern => pattern.listed).map(
+        (pattern, key) => (
+          console.log(this.day),
+          console.log(pattern.describe(this.day)),
+          {
+            label:
+              moment.locale() == "en"
+                ? pattern.describe(this.day)
+                : russian[key],
+            value: pattern.name
+          }
+        )
+      );
     },
 
-    customIcon()
-    {
-      return this.type === 'custom' ? 'edit' : '';
+    customIcon() {
+      return this.type === "custom" ? "edit" : "";
     },
 
-    isReadOnly()
-    {
+    isReadOnly() {
       return this.readOnly || this.$dayspan.readOnly;
     }
   },
 
-  methods:
-  {
-    applyType(newType, oldType)
-    {
-      if (this.applying)
-      {
-        if (oldType === 'custom')
-        {
+  methods: {
+    applyType(newType, oldType) {
+      if (this.applying) {
+        if (oldType === "custom") {
           this.schedule.end = null;
         }
 
-        if (newType)
-        {
+        if (newType) {
           var pattern = Pattern.withName(newType);
 
-          if (pattern)
-          {
-            pattern.apply( this.schedule, this.day );
+          if (pattern) {
+            pattern.apply(this.schedule, this.day);
           }
         }
 
-        if (newType === 'none')
-        {
+        if (newType === "none") {
           this.schedule.adjustDefinedSpan();
         }
       }
 
-      this.$emit('change', newType);
+      this.$emit("change", newType);
     },
 
-    custom()
-    {
-      this.$emit('custom', this);
+    custom() {
+      this.$emit("custom", this);
     },
 
-    updateType()
-    {
+    updateType() {
       this.applying = false;
       this.type = this.determineType();
       this.applying = true;
     },
 
-    determineType()
-    {
+    determineType() {
       var pattern = Pattern.findMatch(this.schedule);
 
-      return pattern ? pattern.name : 'custom';
+      return pattern ? pattern.name : "custom";
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
-
 .v-input__icon--append-outer {
   color: black;
 }
-
 </style>
