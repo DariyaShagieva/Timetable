@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.services.timetable.model.ElectiveCourse;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,11 +21,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String login;
+    private String email;
+
+    private String hashPassword;
 
     private String firstName;
 
     private String lastName;
+
+    private String patronymic;
 
     private String telegramCode;
 

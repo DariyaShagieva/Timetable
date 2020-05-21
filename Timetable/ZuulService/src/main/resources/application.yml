@@ -1,9 +1,0 @@
-zuul:
-  prefix: /api
-  routes:
-    user:
-      path: /timetable/**
-      serviceId: TIMETABLE
-    bot:
-      path: /telegrambot/**
-      serviceId: TELEGRAMBOT
