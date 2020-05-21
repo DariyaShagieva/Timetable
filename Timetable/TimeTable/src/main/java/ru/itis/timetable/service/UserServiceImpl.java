@@ -6,6 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.itis.timetable.dto.RecoveryDto;
 import ru.itis.timetable.form.RecoveryForm;
 import ru.itis.timetable.form.UserCreateForm;
 import ru.itis.timetable.mapper.UserMapper;
@@ -45,11 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean recovery(RecoveryForm recoveryForm) {
-        Optional<User> userCandidate = userRepository.findByEmail(recoveryForm.getEmail());
-        if (userCandidate.isPresent()) {
-            return true;
+    public RecoveryDto recovery(RecoveryForm recoveryForm) {
+        RecoveryDto recoveryDto = new RecoveryDto();
+        if (userRepository.existsByEmail(recoveryForm.getEmail())) {
+            recoveryDto.setCheck(true);
+        } else {
+            recoveryDto.setCheck(false);
         }
-        return false;
+        return recoveryDto;
     }
 }

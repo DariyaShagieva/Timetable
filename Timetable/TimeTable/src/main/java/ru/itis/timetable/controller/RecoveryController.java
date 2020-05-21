@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.itis.timetable.dto.RecoveryDto;
 import ru.itis.timetable.form.RecoveryForm;
 import ru.itis.timetable.service.UserService;
 
@@ -23,9 +24,9 @@ public class RecoveryController {
 
     @PostMapping
     @PreAuthorize("permitAll()")
-    public ResponseEntity<Boolean> recovery(@Valid @RequestBody RecoveryForm recoveryForm) {
-        Boolean check = userService.recovery(recoveryForm);
+    public ResponseEntity<RecoveryDto> recovery(@Valid @RequestBody RecoveryForm recoveryForm) {
+        RecoveryDto recovery = userService.recovery(recoveryForm);
         //отправлять сообщение 
-        return ResponseEntity.ok(check);
+        return ResponseEntity.ok(recovery);
     }
 }
