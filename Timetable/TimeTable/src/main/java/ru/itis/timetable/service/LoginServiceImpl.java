@@ -54,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
         if(passwordEncoder.matches(loginForm.getPassword(), user.getPassword())) {
             TokenDto token =  TokenDto.builder().token(getTokenAsString(user)).build();
             System.out.println(token.getToken());
-            return new UserDto(token, user.getEmail(), user.getFirstName());
+            return new UserDto(token.getToken(), user.getEmail(), user.getFirstName());
 
         } else {
             throw new BadCredentialsException("Incorrect login/password");
