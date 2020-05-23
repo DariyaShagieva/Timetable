@@ -540,6 +540,10 @@ export default {
       let state = this.calendar.toInput(true);
       let json = JSON.stringify(state);
       localStorage.setItem(this.storeKey, json);
+      const token = localStorage.getItem("token");
+      if (token) {
+        this.readOnly = false;
+      }
     },
     loadState() {
       let state = {};
@@ -572,6 +576,8 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
+            const token = localStorage.setItem("token", response.data);
+            console.log(token);
             console.log(response);
           })
           .catch(e => {
@@ -582,15 +588,21 @@ export default {
       }
     },
     register() {
-      if (this.input.email != "" && this.input.password != "" && this.input.firstName != ""
-      && this.input.lastName != "" && this.input.patronymic != "" && this.input.group != "") {
+      if (
+        this.input.email != "" &&
+        this.input.password != "" &&
+        this.input.firstName != "" &&
+        this.input.lastName != "" &&
+        this.input.patronymic != "" &&
+        this.input.group != ""
+      ) {
         const result = {
           email: this.input.email,
           password: this.input.password,
           firstName: this.input.firstName,
           lastName: this.input.lastName,
           patronymic: this.input.patronymic,
-          group: this.input.group,
+          group: this.input.group
         };
         HTTP.post(`/register`, {
           body: result
@@ -598,6 +610,7 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
+            const token = localStorage.setItem("token", response.data);
             console.log(response);
           })
           .catch(e => {
