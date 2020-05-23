@@ -101,6 +101,38 @@
                             </v-col>
                             <v-col cols="12">
                               <v-text-field
+                                prepend-icon="person"
+                                label="Имя*"
+                                required
+                                v-model="input.lastName"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="person"
+                                label="Фамилия*"
+                                required
+                                v-model="input.firstName"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="person"
+                                label="Отчество*"
+                                required
+                                v-model="input.patronymic"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
+                                prepend-icon="person"
+                                label="Группа*"
+                                required
+                                v-model="input.group"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                              <v-text-field
                                 prepend-icon="lock"
                                 name="Password"
                                 label="Password*"
@@ -194,6 +226,8 @@
 import { dsMerge } from "../functions";
 import { Calendar, Weekday, Month, Sorts } from "dayspan";
 import * as moment from "moment";
+import { HTTP } from "../infrastructure/http-common";
+import axios from "axios";
 
 export default {
   name: "dayspan",
@@ -204,7 +238,11 @@ export default {
     dialog: false,
     input: {
       email: "",
-      password: ""
+      password: "",
+      firstName: "",
+      lastName: "",
+      patronymic: "",
+      group: ""
     },
     tab: null,
     items: [
@@ -214,13 +252,13 @@ export default {
     account: false,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
-      { value: "ru", text: "Russia" },
+      { value: "ru", text: "Русский" },
       { value: "en", text: "English" }
     ],
     defaultEvents: [
       {
         data: {
-          title: "Философия",
+          title: "Философия"
         },
         schedule: {
           dayOfWeek: [Weekday.MONDAY],
@@ -240,6 +278,135 @@ export default {
           times: [16],
           duration: 90,
           durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "UX",
+          type: "Лекция",
+          color: "#2196F3"
+        },
+        schedule: {
+          dayOfWeek: [Month.NOVEMBER.WEDNESDAY],
+          times: [16],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "Inauguration Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.JANUARY],
+          dayOfMonth: [20]
+        }
+      },
+      {
+        data: {
+          title: "Martin Luther King, Jr. Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.JANUARY],
+          dayOfWeek: [Weekday.MONDAY],
+          weekspanOfMonth: [2]
+        }
+      },
+      {
+        data: {
+          title: "George Washington's Birthday",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.FEBRUARY],
+          dayOfWeek: [Weekday.MONDAY],
+          weekspanOfMonth: [2]
+        }
+      },
+      {
+        data: {
+          title: "Memorial Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.MAY],
+          dayOfWeek: [Weekday.MONDAY],
+          lastWeekspanOfMonth: [0]
+        }
+      },
+      {
+        data: {
+          title: "Independence Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.JULY],
+          dayOfMonth: [4]
+        }
+      },
+      {
+        data: {
+          title: "Labor Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.SEPTEMBER],
+          dayOfWeek: [Weekday.MONDAY],
+          lastWeekspanOfMonth: [0]
+        }
+      },
+      {
+        data: {
+          title: "Columbus Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.OCTOBER],
+          dayOfWeek: [Weekday.MONDAY],
+          weekspanOfMonth: [1]
+        }
+      },
+      {
+        data: {
+          title: "Veterans Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.NOVEMBER],
+          dayOfMonth: [11]
+        }
+      },
+      {
+        data: {
+          title: "Thanksgiving Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.NOVEMBER],
+          dayOfWeek: [Weekday.THURSDAY],
+          weekspanOfMonth: [3]
+        }
+      },
+      {
+        data: {
+          title: "Christmas Day",
+          color: "#2196F3",
+          calendar: "US Holidays"
+        },
+        schedule: {
+          month: [Month.DECEMBER],
+          dayOfMonth: [25]
         }
       },
       {
@@ -301,7 +468,7 @@ export default {
         },
         schedule: {
           dayOfWeek: [Weekday.THURSDAY],
-          times: [11],
+          times: [11.3],
           duration: 90,
           durationUnit: "minutes"
         }
@@ -314,7 +481,18 @@ export default {
         },
         schedule: {
           dayOfWeek: [Weekday.FRIDAY],
-          times: [10],
+          duration: 90,
+          durationUnit: "minutes"
+        }
+      },
+      {
+        data: {
+          title: "Информационная безопасность",
+          type: "Лекция",
+          color: "#FFA500"
+        },
+        schedule: {
+          dayOfWeek: [Weekday.FRIDAY],
           duration: 90,
           durationUnit: "minutes"
         }
@@ -327,6 +505,7 @@ export default {
         schedule: {
           dayOfWeek: [Weekday.SATURDAY],
           times: [8],
+          year: [2020],
           duration: 90,
           durationUnit: "minutes"
         }
@@ -383,18 +562,47 @@ export default {
     },
     login() {
       if (this.input.email != "" && this.input.password != "") {
-        this.readOnly = false;
-        this.account = false;
-        console.log(this.input.email, this.input.password);
+        const result = {
+          email: this.input.email,
+          password: this.input.password
+        };
+        HTTP.post(`/login`, {
+          body: result
+        })
+          .then(response => {
+            this.readOnly = false;
+            this.account = false;
+            console.log(response);
+          })
+          .catch(e => {
+            console.log(e);
+          });
       } else {
         console.log("A email and password must be present");
       }
     },
     register() {
-      if (this.input.email != "" && this.input.password != "") {
-        this.readOnly = false;
-        this.account = false;
-        console.log(this.input.email, this.input.password);
+      if (this.input.email != "" && this.input.password != "" && this.input.firstName != ""
+      && this.input.lastName != "" && this.input.patronymic != "" && this.input.group != "") {
+        const result = {
+          email: this.input.email,
+          password: this.input.password,
+          firstName: this.input.firstName,
+          lastName: this.input.lastName,
+          patronymic: this.input.patronymic,
+          group: this.input.group,
+        };
+        HTTP.post(`/register`, {
+          body: result
+        })
+          .then(response => {
+            this.readOnly = false;
+            this.account = false;
+            console.log(response);
+          })
+          .catch(e => {
+            console.log(e);
+          });
       } else {
         console.log("A email and password must be present");
       }

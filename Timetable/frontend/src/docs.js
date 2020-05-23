@@ -13,7 +13,7 @@ import en from './locales/en'
 import 'moment/locale/ru'
 
 import moment from "moment"
-moment.lang('ru')
+moment.locale('ru')
 
 Vue.config.productionTip = false
 
@@ -23,7 +23,12 @@ Vue.use(DaySpanVuetify,
   {
     data:
     {
-      locales: { en, ru }
+      defaults: {
+        dsWeeksView: {
+          weekdays: moment.weekdaysShort(true)
+        },
+      },
+      locales: { ru, en }
     },
     methods:
     {
@@ -32,7 +37,9 @@ Vue.use(DaySpanVuetify,
       }
     }
   });
-
+  console.log(Vue.$dayspan.currentLocale)
+Vue.$dayspan.addLocale('ru', ru);
+Vue.$dayspan.setLocale('ru', true);
 new Vue({
   el: '#app',
   render: h => h(App)
