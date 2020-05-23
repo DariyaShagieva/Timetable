@@ -29,8 +29,18 @@
             </v-flex>
             <v-flex xs12>
               <v-btn
+                v-if="token"
                 style="color:white"
                 round
+                block
+                id="logout"
+                color="#04859D"
+                v-on:click="logout()"
+              >LogOut</v-btn>
+              <v-btn
+                style="color:white"
+                round
+                v-if="!token"
                 block
                 id="login"
                 color="#04859D"
@@ -236,6 +246,7 @@ export default {
     calendar: Calendar.months(),
     readOnly: true,
     dialog: false,
+    token: false,
     input: {
       email: "",
       password: "",
@@ -542,6 +553,7 @@ export default {
       localStorage.setItem(this.storeKey, json);
       const token = localStorage.getItem("token");
       if (token) {
+        this.token= true;
         this.readOnly = false;
       }
     },
@@ -577,6 +589,7 @@ export default {
             this.readOnly = false;
             this.account = false;
             const token = localStorage.setItem("token", response.data);
+            this.token = true;
             console.log(token);
             console.log(response);
           })
@@ -586,6 +599,11 @@ export default {
       } else {
         console.log("A email and password must be present");
       }
+    },
+    logout(){
+      this.token = false;
+      this.readOnly = true;
+      localStorage.clear();
     },
     register() {
       if (
@@ -611,6 +629,7 @@ export default {
             this.readOnly = false;
             this.account = false;
             const token = localStorage.setItem("token", response.data);
+            this.token = true;
             console.log(response);
           })
           .catch(e => {
