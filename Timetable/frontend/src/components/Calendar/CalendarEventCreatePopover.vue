@@ -129,6 +129,7 @@
 
 <script>
 import { CalendarEvent, Calendar, Pattern, Functions as fn } from "dayspan";
+import { HTTP } from "../../infrastructure/http-common";
 
 export default {
   name: "dsCalendarEventCreatePopover",
@@ -264,7 +265,6 @@ export default {
       let ev = this.getEvent("creating");
 
       this.$emit("creating", ev);
-
       if (!ev.handled && ev.details && ev.calendarEvent) {
         ev.created = ev.calendarEvent.event;
 
@@ -290,8 +290,28 @@ export default {
 
         this.$emit("event-create", ev.created);
       }
-
-      this.finishEvent(ev);
+      HTTP.post(`/event`, {
+        body: {
+          data: {
+            color: ev.details.color,
+            description: ev.details.description,
+            title: ev.details.description
+          },
+          shedule: {
+            dayOfMonth: ev.created.schedule.dayOfMonth.input,
+            month: ev.created.schedule.month.input
+          }
+        }
+      })
+        .then(response => {
+          console.log(response)
+          this.finishEvent(ev);
+        })
+        .catch(e => {
+          console.log(e)
+          alert(e);
+        });
+      
     },
 
     finishEvent(ev) {

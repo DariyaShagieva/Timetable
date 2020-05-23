@@ -37,7 +37,6 @@ Vue.use(DaySpanVuetify,
       }
     }
   });
-  console.log(Vue.$dayspan.currentLocale)
 Vue.$dayspan.addLocale('ru', ru);
 Vue.$dayspan.setLocale('ru', true);
 new Vue({

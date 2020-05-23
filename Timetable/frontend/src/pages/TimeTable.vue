@@ -553,7 +553,7 @@ export default {
       localStorage.setItem(this.storeKey, json);
       const token = localStorage.getItem("token");
       if (token) {
-        this.token= true;
+        this.token = true;
         this.readOnly = false;
       }
     },
@@ -582,6 +582,8 @@ export default {
           email: this.input.email,
           password: this.input.password
         };
+        this.input.email = "";
+        this.input.password = "";
         HTTP.post(`/login`, {
           body: result
         })
@@ -590,8 +592,6 @@ export default {
             this.account = false;
             const token = localStorage.setItem("token", response.data);
             this.token = true;
-            console.log(token);
-            console.log(response);
           })
           .catch(e => {
             console.log(e);
@@ -600,7 +600,7 @@ export default {
         console.log("A email and password must be present");
       }
     },
-    logout(){
+    logout() {
       this.token = false;
       this.readOnly = true;
       localStorage.clear();
@@ -622,6 +622,12 @@ export default {
           patronymic: this.input.patronymic,
           group: this.input.group
         };
+        this.input.email = "";
+        this.input.password = "";
+        this.input.firstName = "";
+        this.input.lastName = "";
+        this.input.patronymic = "";
+        this.input.group = "";
         HTTP.post(`/register`, {
           body: result
         })
@@ -630,7 +636,6 @@ export default {
             this.account = false;
             const token = localStorage.setItem("token", response.data);
             this.token = true;
-            console.log(response);
           })
           .catch(e => {
             console.log(e);
