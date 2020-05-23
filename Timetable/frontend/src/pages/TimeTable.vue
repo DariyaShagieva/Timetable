@@ -217,12 +217,14 @@
               </v-card>
             </v-dialog>
             <v-flex xs12>
+              <input accept=".xlsx" id="fileUpload" type="file" hidden @change="previewFiles" />
               <v-btn
                 style="color:white"
                 round
                 block
                 id="downloadShedule"
                 color="#04859D"
+                @click="chooseFiles()"
               >Upload timetable</v-btn>
             </v-flex>
           </v-layout>
@@ -238,6 +240,7 @@ import { Calendar, Weekday, Month, Sorts } from "dayspan";
 import * as moment from "moment";
 import { HTTP } from "../infrastructure/http-common";
 import axios from "axios";
+import readXlsxFile from "read-excel-file";
 
 export default {
   name: "dayspan",
@@ -570,7 +573,7 @@ export default {
       }
       HTTP.get(`/`)
         .then(response => {
-          console.log(response)
+          console.log(response);
           state.events = this.defaultEvents;
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
@@ -580,14 +583,24 @@ export default {
         })
         .catch(e => alert(e));
     },
+    chooseFiles(event) {
+      document.getElementById("fileUpload").click();
+
+     
+    },
+    previewFiles(event) {
+      readXlsxFile(event.target.files[0]).then(rows => {
+        console.log(rows);
+      });
+      console.log(event.target.files);
+    },
     login() {
       if (this.input.email != "" && this.input.password != "") {
         const result = {
           email: this.input.email,
           password: this.input.password
         };
-        this.input.email = "";
-        this.input.password = "";
+
         HTTP.post(`/login`, {
           body: result
         })
@@ -596,6 +609,8 @@ export default {
             this.account = false;
             const token = localStorage.setItem("token", response.data);
             this.token = true;
+            this.input.email = "";
+            this.input.password = "";
           })
           .catch(e => {
             console.log(e);
@@ -626,12 +641,7 @@ export default {
           patronymic: this.input.patronymic,
           group: this.input.group
         };
-        this.input.email = "";
-        this.input.password = "";
-        this.input.firstName = "";
-        this.input.lastName = "";
-        this.input.patronymic = "";
-        this.input.group = "";
+
         HTTP.post(`/register`, {
           body: result
         })
@@ -640,6 +650,12 @@ export default {
             this.account = false;
             const token = localStorage.setItem("token", response.data);
             this.token = true;
+            this.input.email = "";
+            this.input.password = "";
+            this.input.firstName = "";
+            this.input.lastName = "";
+            this.input.patronymic = "";
+            this.input.group = "";
           })
           .catch(e => {
             console.log(e);

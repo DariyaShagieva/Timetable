@@ -16,7 +16,7 @@ import moment from "moment"
 moment.locale('ru')
 
 Vue.config.productionTip = false
-
+// Vuetify.locale('ru');
 Vue.use(Vuetify);
 
 Vue.use(DaySpanVuetify,

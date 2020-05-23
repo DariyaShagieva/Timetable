@@ -170,7 +170,7 @@ export default {
         busy: 'Busy',
         free: 'Free',
         location: 'Add location',
-        description: 'Add description',
+        description: 'Сouple note',
         calendar: 'Calendar',
       },
       busyOptions: [
@@ -195,7 +195,7 @@ export default {
         edit: 'Edit event',
         add: 'Add event',
         location: 'Add location',
-        description: 'Add description',
+        description: 'Сouple note',
         calendar: 'Calendar',
         tabs: {
           details: 'Event Details',

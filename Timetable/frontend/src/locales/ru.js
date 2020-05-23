@@ -171,7 +171,7 @@ export default {
         busy: 'Занят',
         free: 'Свободен',
         location: 'Добавить местоположение',
-        description: 'Добавить описание',
+        description: ' Заметка к паре',
         calendar: 'Календарь',
       },
       busyOptions: [
@@ -196,7 +196,7 @@ export default {
         edit: 'Редактировать событие',
         add: 'Добавить событие',
         location: 'Добавить местоположение',
-        description: 'Добавить описание',
+        description: 'Заметка к паре',
         calendar: 'Календарь',
         tabs: {
           details: 'Детали события',
