@@ -568,13 +568,17 @@ export default {
       } catch (e) {
         console.log(e);
       }
-
-      state.events = this.defaultEvents;
-      let defaults = this.$dayspan.getDefaultEventDetails();
-      state.events.forEach(ev => {
-        ev.data = dsMerge(ev.data, defaults);
-      });
-      this.$refs.app.setState(state);
+      HTTP.get(`/`)
+        .then(response => {
+          console.log(response)
+          state.events = this.defaultEvents;
+          let defaults = this.$dayspan.getDefaultEventDetails();
+          state.events.forEach(ev => {
+            ev.data = dsMerge(ev.data, defaults);
+          });
+          this.$refs.app.setState(state);
+        })
+        .catch(e => alert(e));
     },
     login() {
       if (this.input.email != "" && this.input.password != "") {
