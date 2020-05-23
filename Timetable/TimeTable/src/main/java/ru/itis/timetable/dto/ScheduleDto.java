@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ScheduleDto {
 
-    private String dayOfWeek;
+    private int dayOfWeek;
 
     private TimeDto times;
 

@@ -16,4 +16,8 @@ public enum Time {
        this.time = time;
    }
 
+   public String getTime() {
+       return time;
+   }
+
 }

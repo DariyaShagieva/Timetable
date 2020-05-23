@@ -3,6 +3,7 @@ package ru.itis.timetable.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.timetable.dto.TimeTableDto;
+import ru.itis.timetable.mapper.TimeTableMapper;
 import ru.itis.timetable.model.TimeTable;
 import ru.itis.timetable.repository.TimeTableRepository;
 
@@ -14,13 +15,13 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     private TimeTableRepository timeTableRepository;
 
+    @Autowired
+    private TimeTableMapper timeTableMapper;
+
 
     @Override
     public List<TimeTableDto> getAllByGroup(String group) {
         List<TimeTable> timeTableList = timeTableRepository.findAllByGroup(group);
-
-
-
-        return null;
+        return timeTableMapper.convertModelsToDtos(timeTableList);
     }
 }
