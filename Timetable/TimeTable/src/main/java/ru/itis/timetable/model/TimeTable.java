@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -27,10 +28,15 @@ public class TimeTable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "timeTable")
     private Teacher teacher;
 
-    private String day;
+    @Enumerated(value = EnumType.STRING)
+    private Days day;
 
     @Column(name = "time_table_group")
     private String group;
 
-    private String time;
+    @Enumerated(value = EnumType.STRING)
+    private Time time;
+
+    /*@OneToMany(mappedBy = "timetable")
+    private List<Note> notes;*/
 }
