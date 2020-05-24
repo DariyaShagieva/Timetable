@@ -363,9 +363,7 @@ export default {
     previewFiles(event) {
       HTTP.post(`/`, {
         headers: { ContentType: event.target.files[0].type },
-        body: {
           file: event.target.files[0]
-        }
       })
         .then(response => {
           console.log(response);
@@ -380,7 +378,8 @@ export default {
           password: this.input.password
         };
         HTTP.post(`/login`, {
-          body: result
+          email: this.input.email,
+          password: this.input.password
         })
           .then(response => {
             this.readOnly = false;

@@ -25,7 +25,8 @@ public class TimeTableController {
     @GetMapping
     @PreAuthorize("permitAll()")
     public ResponseEntity<List<TimeTableDto>> getAllByDefaultGroup() {
-        return ResponseEntity.ok().body(timeTableService.getAllByGroup("11-703"));
+        String group = "11-703";
+        return ResponseEntity.ok().body(timeTableService.getAllByGroup(group));
     }
 
     @ApiOperation("Get all timetable forms for group")

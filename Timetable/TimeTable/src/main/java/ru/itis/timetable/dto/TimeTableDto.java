@@ -14,7 +14,8 @@ public class TimeTableDto {
 
     private DataDto data;
 
-    private ScheduleTableDto shedule;
+    private ScheduleTableDto schedule;
+
 
 
 

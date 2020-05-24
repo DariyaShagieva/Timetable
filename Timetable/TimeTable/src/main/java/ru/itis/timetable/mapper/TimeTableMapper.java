@@ -18,7 +18,7 @@ public class TimeTableMapper {
     public TimeTableDto convertModelToDto(TimeTable timeTable) {
         return TimeTableDto.builder()
                 .data(createDataDto(timeTable))
-                .shedule(createSchedule(timeTable))
+                .schedule(createSchedule(timeTable))
                 .build();
     }
 
