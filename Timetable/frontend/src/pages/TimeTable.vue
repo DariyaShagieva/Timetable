@@ -344,12 +344,12 @@ export default {
             }
             if (ev.schedule.times) {
               if (ev.schedule.times.hour) {
-                ev.schedule.times.hour = [ev.schedule.times.hour];
+                ev.schedule.times.hour = [Number(ev.schedule.times.hour)];
               }
               if (ev.schedule.times.minutes) {
-                ev.schedule.times.minutes = [ev.schedule.times.minutes];
+                ev.schedule.times.minutes = [Number(ev.schedule.times.minutes)];
               }
-              ev.schedule.times = [ev.schedule.times];
+              ev.schedule.times = [Number(ev.schedule.times)];
             }
             ev.data = dsMerge(ev.data, defaults);
           });
@@ -383,12 +383,12 @@ export default {
             }
             if (ev.schedule.times) {
               if (ev.schedule.times.hour) {
-                ev.schedule.times.hour = [ev.schedule.times.hour];
+                ev.schedule.times.hour = [Number(ev.schedule.times.hour)];
               }
               if (ev.schedule.times.minutes) {
-                ev.schedule.times.minutes = [ev.schedule.times.minutes];
+                ev.schedule.times.minutes = [Number(ev.schedule.times.minutes)];
               }
-              ev.schedule.times = [ev.schedule.times];
+              ev.schedule.times = [Number(ev.schedule.times)];
             }
             ev.data = dsMerge(ev.data, defaults);
           });
