@@ -1,5 +1,7 @@
 package ru.itis.timetable.parsers;
 
+import java.io.InputStream;
+
 public interface Parser {
-  void parseAndSave(String name);
+  void parseAndSave(InputStream inputStream);
 }

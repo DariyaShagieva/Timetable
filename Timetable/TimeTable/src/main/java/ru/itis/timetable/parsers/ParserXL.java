@@ -23,19 +23,13 @@ public class ParserXL implements Parser {
   @Autowired
   private TimeTableRepository timeTableRepository;
 
-
-  /**
-   * @param name
-   * @return
-   */
-  private Sheet getSheet(String name) {
+  private Sheet getSheet(InputStream inputStream) {
 
     InputStream in = null;
     XSSFWorkbook wb = null;
 
     try {
-      in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
-      wb = new XSSFWorkbook(in);
+      wb = new XSSFWorkbook(inputStream);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -44,10 +38,10 @@ public class ParserXL implements Parser {
 
   }
 
-  private List<TimeTable> parse(String name) {
+  private List<TimeTable> parse(InputStream inputStream) {
     Map<Integer, String> groups = new ArrayMap<>();
     List<TimeTable> timeTables = new ArrayList<TimeTable>();
-    Sheet sheet = getSheet(name);
+    Sheet sheet = getSheet(inputStream);
     Iterator<Row> it = sheet.iterator();
     Days day = null;
     Time time = null;
@@ -172,8 +166,8 @@ public class ParserXL implements Parser {
   }
 
   @Override
-  public void parseAndSave(String name) {
-    List<TimeTable> timeTables = parse("timetable_2019-2020 2сем.xlsx");
+  public void parseAndSave(InputStream inputStream) {
+    List<TimeTable> timeTables = parse(inputStream);
     saveTimeTable(timeTables);
   }
 }

@@ -8,6 +8,7 @@ import ru.itis.timetable.model.TimeTable;
 import ru.itis.timetable.parsers.Parser;
 import ru.itis.timetable.repository.TimeTableRepository;
 
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -30,8 +31,8 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
   @Override
-  public Boolean saveNewTimeTable() {
-      parser.parseAndSave("");
+  public Boolean saveNewTimeTable(InputStream inputStream) {
+      parser.parseAndSave(inputStream);
       return true;
   }
 }
