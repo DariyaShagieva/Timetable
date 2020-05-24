@@ -15,5 +15,9 @@ public class ScheduleTableDto {
 
     private TimeDto times;
 
+    private Integer duration;
+
+    private String durationUnit;
+
 
 }
