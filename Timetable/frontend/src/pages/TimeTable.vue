@@ -260,12 +260,12 @@ export default {
     code: "",
     USER_TOKEN: "",
     emailRules: [
-      vm => !!vm || 'E-mail is required',
-      vm => /.+@.+/.test(vm) || 'E-mail must be valid',
+      vm => !!vm || "E-mail is required",
+      vm => /.+@.+/.test(vm) || "E-mail must be valid"
     ],
-    passwordRules:[
-      vm => !!vm || 'Password is required',
-      vm => vm.length <= 7 || 'Password must be less than 7 characters'
+    passwordRules: [
+      vm => !!vm || "Password is required",
+      vm => vm.length <= 7 || "Password must be less than 7 characters"
     ],
     input: {
       email: "",
@@ -293,9 +293,6 @@ export default {
     this.loadState();
   },
   methods: {
-    isEmailValid: function() {
-      return (this.input.email == "")? "" : (this.reg.test(this.input.email)) ? 'has-success' : 'has-error';
-    },
     getCalendarTime(calendarEvent) {
       let sa = calendarEvent.start.format("a");
       let ea = calendarEvent.end.format("a");
@@ -342,6 +339,10 @@ export default {
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
+            if ( ev.schedule.dayOfWeek) {
+              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
+            }
+            console.log(ev);
             ev.data = dsMerge(ev.data, defaults);
           });
           this.$refs.app.setState(state);
@@ -363,10 +364,15 @@ export default {
     previewFiles(event) {
       HTTP.post(`/`, {
         headers: { ContentType: event.target.files[0].type },
-          file: event.target.files[0]
+        file: event.target.files[0]
       })
         .then(response => {
-          console.log(response);
+          state.events = Object.values(response.data);
+          let defaults = this.$dayspan.getDefaultEventDetails();
+          state.events.forEach(ev => {
+            ev.data = dsMerge(ev.data, defaults);
+          });
+          this.$refs.app.setState(state);
         })
         .catch(e => alert(e));
       console.log(event.target.files[0]);
@@ -384,7 +390,7 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
-            this.USER_TOKEN = response.data.data.token;
+            this.USER_TOKEN = response.token;
             localStorage.setItem("token", this.USER_TOKEN);
             this.token = true;
             this.input.email = "";
@@ -431,7 +437,7 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
-            this.USER_TOKEN = response.data.data.token;
+            this.USER_TOKEN = response.token;
             localStorage.setItem("token", this.USER_TOKEN);
             this.token = true;
             this.input.email = "";
