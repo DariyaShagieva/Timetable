@@ -21,14 +21,14 @@ import java.util.regex.Pattern;
 @Component
 public class ParserXL {
   @Autowired
-  private  static TimeTableRepository timeTableRepository;
+  private   TimeTableRepository timeTableRepository;
 
 
   /**
    * @param name
    * @return
    */
-  private static Sheet getSheet(String name) {
+  private  Sheet getSheet(String name) {
 
     InputStream in = null;
     XSSFWorkbook wb = null;
@@ -44,7 +44,7 @@ public class ParserXL {
 
   }
 
-  public static List<TimeTable> parse(String name) {
+  public  List<TimeTable> parse(String name) {
     Map<Integer, String> groups = new ArrayMap<>();
     List<TimeTable> timeTables = new ArrayList<TimeTable>();
     Sheet sheet = getSheet(name);
@@ -127,14 +127,14 @@ public class ParserXL {
     }
 
 
-  private static ElectiveCourse getElectiveCourse(Teacher teacher, String title) {
+  private  ElectiveCourse getElectiveCourse(Teacher teacher, String title) {
     return ElectiveCourse.builder()
       .teacher(teacher)
       .title(title)
       .build();
   }
 
-  private static TimeTable getTimeTable(ElectiveCourse electiveCourse, Days days, String group, Time time, Teacher teacher) {
+  private  TimeTable getTimeTable(ElectiveCourse electiveCourse, Days days, String group, Time time, Teacher teacher) {
     return TimeTable.builder()
       .course(electiveCourse)
       .day(days)
@@ -145,7 +145,7 @@ public class ParserXL {
 
   }
 
-  private static Teacher getTeacher(String string) {
+  private  Teacher getTeacher(String string) {
     Pattern pattern = Pattern.compile("[А-я]*.[А-Я].[А-Я].");
     Matcher matcher = pattern.matcher(string);
     if (matcher.find()) {
@@ -154,11 +154,11 @@ public class ParserXL {
     return null;
   }
 
-  private static void saveTimeTable(List<TimeTable> timeTables) {
+  private  void saveTimeTable(List<TimeTable> timeTables) {
     timeTables.forEach(timeTable -> timeTableRepository.save(timeTable));
   }
 
-  public static void main(String[] args) {
+  public  void parseAndSave(String name) {
     List<TimeTable> timeTables = parse("timetable_2019-2020 2сем.xlsx");
     saveTimeTable(timeTables);
   }
