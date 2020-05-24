@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import ru.itis.timetable.dto.TimeDto;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Note {
     @Column(name = "time_table_kfu_id")
     private Long id;
 
+    @Column(length = 3000)
     private String description;
 
     private Integer dayOfWeek;

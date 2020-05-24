@@ -19,16 +19,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class ParserXL {
+public class ParserXL implements Parser {
   @Autowired
-  private   TimeTableRepository timeTableRepository;
+  private TimeTableRepository timeTableRepository;
 
 
   /**
    * @param name
    * @return
    */
-  private  Sheet getSheet(String name) {
+  private Sheet getSheet(String name) {
 
     InputStream in = null;
     XSSFWorkbook wb = null;
@@ -44,7 +44,7 @@ public class ParserXL {
 
   }
 
-  public  List<TimeTable> parse(String name) {
+  private List<TimeTable> parse(String name) {
     Map<Integer, String> groups = new ArrayMap<>();
     List<TimeTable> timeTables = new ArrayList<TimeTable>();
     Sheet sheet = getSheet(name);
@@ -85,10 +85,15 @@ public class ParserXL {
               int rowNum = region.getFirstRow();      //number of rows merged
               //check first cell of the region
               if (rowNum == cell.getRowIndex() && colIndex == cell.getColumnIndex() && !sheet.getRow(rowNum).getCell(colIndex).getStringCellValue().equals(StringUtil.EMPTY_STRING)) {
+                System.out.println(string);
+                string = string.replaceAll("[А-я]*.[А-Я].[А-Я].*", "");
+                System.out.println(string);
                 for (int k = colIndex; k <= region.getLastColumn(); k++) {
                   Teacher teacher = getTeacher(string);
-                  string = string.replaceAll("  [А-я]*.[А-Я].[А-Я].*", "");
-                  if (teacher != null) {
+                  if (string.contains("Курс по выбору")) {
+                    string = "Курс по выбору";
+                  }
+                  if (teacher != null && !string.contains("директора")) {
                     ElectiveCourse electiveCourse = getElectiveCourse(teacher, string);
                     TimeTable timeTable = getTimeTable(electiveCourse, day, groups.get(k), time, teacher);
                     teacher.setTimeTable(timeTable);
@@ -110,8 +115,13 @@ public class ParserXL {
           String groupNum = groups.get(cell.getColumnIndex());
           if (groupNum != null) {
             Teacher teacher = getTeacher(string);
-            string = string.replaceAll("  [А-я]*.[А-Я].[А-Я].*", "");
-            if (teacher != null) {
+//            System.out.println(string);
+            string = string.replaceAll("[А-я]*.[А-Я].[А-Я].*", "");
+            if (string.contains("Курс по выбору")) {
+              string = "Курс по выбору";
+            }
+//            System.out.println(string);
+            if (teacher != null && !string.contains("директора")) {
               ElectiveCourse electiveCourse = getElectiveCourse(teacher, string);
               TimeTable timeTable = getTimeTable(electiveCourse, day, groups.get(cell.getColumnIndex()), time, teacher);
               teacher.setTimeTable(timeTable);
@@ -119,22 +129,22 @@ public class ParserXL {
               timeTables.add(timeTable);
             }
           }
-          }
         }
       }
+    }
     return timeTables;
 
-    }
+  }
 
 
-  private  ElectiveCourse getElectiveCourse(Teacher teacher, String title) {
+  private ElectiveCourse getElectiveCourse(Teacher teacher, String title) {
     return ElectiveCourse.builder()
       .teacher(teacher)
       .title(title)
       .build();
   }
 
-  private  TimeTable getTimeTable(ElectiveCourse electiveCourse, Days days, String group, Time time, Teacher teacher) {
+  private TimeTable getTimeTable(ElectiveCourse electiveCourse, Days days, String group, Time time, Teacher teacher) {
     return TimeTable.builder()
       .course(electiveCourse)
       .day(days)
@@ -145,7 +155,7 @@ public class ParserXL {
 
   }
 
-  private  Teacher getTeacher(String string) {
+  private Teacher getTeacher(String string) {
     Pattern pattern = Pattern.compile("[А-я]*.[А-Я].[А-Я].");
     Matcher matcher = pattern.matcher(string);
     if (matcher.find()) {
@@ -154,11 +164,15 @@ public class ParserXL {
     return null;
   }
 
-  private  void saveTimeTable(List<TimeTable> timeTables) {
-    timeTables.forEach(timeTable -> timeTableRepository.save(timeTable));
+  private void saveTimeTable(List<TimeTable> timeTables) {
+    timeTables.forEach(timeTable -> {
+      System.out.println(timeTable.getCourse().getTitle());
+      timeTableRepository.save(timeTable);
+    });
   }
 
-  public  void parseAndSave(String name) {
+  @Override
+  public void parseAndSave(String name) {
     List<TimeTable> timeTables = parse("timetable_2019-2020 2сем.xlsx");
     saveTimeTable(timeTables);
   }
