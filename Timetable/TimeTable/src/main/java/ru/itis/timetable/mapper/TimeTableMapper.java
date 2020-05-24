@@ -33,13 +33,23 @@ public class TimeTableMapper {
 
     private ScheduleTableDto createSchedule(TimeTable timeTable) {
         String[] time = timeTable.getTime().getTime().split(":");
+       String hour;
+       if(time[0].indexOf('0') == 0) {
+           hour = time[0].split("0")[1];
+       } else {
+           hour = time[0];
+       }
         TimeDto timeDto = TimeDto.builder()
-                .hour(time[0])
+                .hour(hour)
                 .minute(time[1])
                 .build();
         return ScheduleTableDto.builder()
                 .dayOfWeek(timeTable.getDay().ordinal())
-                .times(timeDto).build();
+                .times(timeDto)
+                .duration(90)
+                .durationUnit("minutes")
+                .build();
+
     }
 
     private Stream<TimeTableDto> modelsToDtos(List<TimeTable> timeTableList) {
