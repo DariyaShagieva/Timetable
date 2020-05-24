@@ -263,7 +263,7 @@ export default {
       vm => !!vm || "E-mail is required",
       vm => /.+@.+/.test(vm) || "E-mail must be valid"
     ],
-    passwordRules:[
+    passwordRules: [
       vm => !!vm || "Password is required",
       vm => vm.length <= 7 || "Password must be less than 7 characters"
     ],
@@ -339,10 +339,18 @@ export default {
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
-            if ( ev.schedule.dayOfWeek) {
+            if (ev.schedule.dayOfWeek) {
               ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
             }
-            console.log(ev);
+            if (ev.schedule.times) {
+              if (ev.schedule.times.hour) {
+                ev.schedule.times.hour = [ev.schedule.times.hour];
+              }
+              if (ev.schedule.times.minutes) {
+                ev.schedule.times.minutes = [ev.schedule.times.minutes];
+              }
+              ev.schedule.times = [ev.schedule.times];
+            }
             ev.data = dsMerge(ev.data, defaults);
           });
           this.$refs.app.setState(state);
@@ -350,7 +358,7 @@ export default {
         .catch(e => alert(e));
     },
     joinToChannel() {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       HTTP.get(`/telegram`, { headers: { Authorization: token } })
         .then(response => {
           this.dialog = true;
@@ -370,6 +378,18 @@ export default {
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
+            if (ev.schedule.dayOfWeek) {
+              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
+            }
+            if (ev.schedule.times) {
+              if (ev.schedule.times.hour) {
+                ev.schedule.times.hour = [ev.schedule.times.hour];
+              }
+              if (ev.schedule.times.minutes) {
+                ev.schedule.times.minutes = [ev.schedule.times.minutes];
+              }
+              ev.schedule.times = [ev.schedule.times];
+            }
             ev.data = dsMerge(ev.data, defaults);
           });
           this.$refs.app.setState(state);
@@ -397,7 +417,7 @@ export default {
             this.input.password = "";
           })
           .catch(e => {
-            console.log(e);
+            alert(e);
           });
       } else {
         console.log("A email and password must be present");
