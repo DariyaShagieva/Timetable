@@ -191,15 +191,18 @@
               >Join to channel</v-btn>
             </v-flex>
             <v-dialog v-model="dialog" max-width="290">
-              <v-card>
-                <v-card-title class="headline">Join to channel</v-card-title>
-                <v-flex>
-                  <v-card-text>Введите код для идентификации</v-card-text>
-                  <v-card-text>{{this.code}}</v-card-text>
+              <v-card
+                style="border-radius: 10px;
+                              padding-bottom: 10px;
+                              padding-right: 5px;"
+              >
+                <v-card-title style="justify-content: center;" class="headline">Join to channel</v-card-title>
+                <v-flex xs12>
+                  <v-card-text style="text-align: center;">Введите код для идентификации</v-card-text>
+                  <v-card-text style="text-align: center;">{{this.code}}</v-card-text>
                 </v-flex>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-
                   <v-btn
                     style="color:white"
                     color="#04859D"
@@ -207,12 +210,11 @@
                     text
                     @click="dialog = false"
                   >Отмена</v-btn>
-
-                  <v-btn style="color:white" color="#04859D" round text>
+                  <v-btn style="color:white;" color="#04859D" round text>
                     <a
-                      style="text-decoration: none;color:black"
-                      href="tg://join?invite=https://t.me/1356101762"
-                    >Перейти на канал</a>
+                      style="text-decoration: none;color:white"
+                      href="https://tlgg.ru/KfuTimeTableBot"
+                    >Открыть телеграмм</a>
                   </v-btn>
                 </v-card-actions>
               </v-card>
