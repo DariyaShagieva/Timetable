@@ -183,10 +183,11 @@
               <v-btn
                 round
                 block
+                v-if="token"
                 id="joinChannel"
                 color="#04859D"
                 style="color:white"
-                @click.stop="dialog = true"
+                @click.stop="joinToChannel()"
               >Join to channel</v-btn>
             </v-flex>
             <v-dialog v-model="dialog" max-width="290">
@@ -250,6 +251,7 @@ export default {
     readOnly: true,
     dialog: false,
     token: false,
+    USER_TOKEN: "jkadfhkj3hadf",
     input: {
       email: "",
       password: "",
@@ -268,262 +270,6 @@ export default {
     locales: [
       { value: "ru", text: "Русский" },
       { value: "en", text: "English" }
-    ],
-    defaultEvents: [
-      {
-        data: {
-          title: "Философия"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.MONDAY],
-          times: [15],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "UX",
-          type: "Лекция",
-          color: "#2196F3"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.MONDAY],
-          times: [16],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "UX",
-          type: "Лекция",
-          color: "#2196F3"
-        },
-        schedule: {
-          dayOfWeek: [Month.NOVEMBER.WEDNESDAY],
-          times: [16],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Inauguration Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JANUARY],
-          dayOfMonth: [20]
-        }
-      },
-      {
-        data: {
-          title: "Martin Luther King, Jr. Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JANUARY],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [2]
-        }
-      },
-      {
-        data: {
-          title: "George Washington's Birthday",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.FEBRUARY],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [2]
-        }
-      },
-      {
-        data: {
-          title: "Memorial Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.MAY],
-          dayOfWeek: [Weekday.MONDAY],
-          lastWeekspanOfMonth: [0]
-        }
-      },
-      {
-        data: {
-          title: "Independence Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.JULY],
-          dayOfMonth: [4]
-        }
-      },
-      {
-        data: {
-          title: "Labor Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.SEPTEMBER],
-          dayOfWeek: [Weekday.MONDAY],
-          lastWeekspanOfMonth: [0]
-        }
-      },
-      {
-        data: {
-          title: "Columbus Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.OCTOBER],
-          dayOfWeek: [Weekday.MONDAY],
-          weekspanOfMonth: [1]
-        }
-      },
-      {
-        data: {
-          title: "Veterans Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.NOVEMBER],
-          dayOfMonth: [11]
-        }
-      },
-      {
-        data: {
-          title: "Thanksgiving Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.NOVEMBER],
-          dayOfWeek: [Weekday.THURSDAY],
-          weekspanOfMonth: [3]
-        }
-      },
-      {
-        data: {
-          title: "Christmas Day",
-          color: "#2196F3",
-          calendar: "US Holidays"
-        },
-        schedule: {
-          month: [Month.DECEMBER],
-          dayOfMonth: [25]
-        }
-      },
-      {
-        data: {
-          title: "Коррупция",
-          type: "Лекция"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.TUESDAY],
-          times: [9],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Основы предпринимательства",
-          color: "#21F6F5",
-          type: "Лекция"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.TUESDAY],
-          times: [11],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Анализ данных",
-          type: "Лекция",
-          color: "#B1009B"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.WEDNESDAY],
-          times: [14],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Анализ данных",
-          type: "Лекция",
-          color: "#B1239B"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.WEDNESDAY],
-          times: [16],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Архитектура систем",
-          type: "Лекция",
-          color: "#FF9200"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.THURSDAY],
-          times: [11.3],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Информационная безопасность",
-          type: "Лекция",
-          color: "#FFA500"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.FRIDAY],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Информационная безопасность",
-          type: "Лекция",
-          color: "#FFA500"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.FRIDAY],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      },
-      {
-        data: {
-          title: "Физическая культура",
-          color: "#1DD300"
-        },
-        schedule: {
-          dayOfWeek: [Weekday.SATURDAY],
-          times: [8],
-          year: [2020],
-          duration: 90,
-          durationUnit: "minutes"
-        }
-      }
     ]
   }),
   mounted() {
@@ -571,10 +317,10 @@ export default {
       } catch (e) {
         console.log(e);
       }
+
       HTTP.get(`/`)
         .then(response => {
-          console.log(response);
-          state.events = this.defaultEvents;
+          state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
             ev.data = dsMerge(ev.data, defaults);
@@ -583,16 +329,21 @@ export default {
         })
         .catch(e => alert(e));
     },
+    joinToChannel() {
+      const AuthStr = 'Bearer '.concat(this.USER_TOKEN);
+      console.log(AuthStr);
+      HTTP.get(`/telegram`)
+        .then(response => {
+          this.dialog = true;
+          console.log(response);
+        })
+        .catch(e => alert(e));
+    },
     chooseFiles(event) {
       document.getElementById("fileUpload").click();
-
-     
     },
     previewFiles(event) {
-      readXlsxFile(event.target.files[0]).then(rows => {
-        console.log(rows);
-      });
-      console.log(event.target.files);
+      console.log(event.target.files[0]);
     },
     login() {
       if (this.input.email != "" && this.input.password != "") {
@@ -600,14 +351,14 @@ export default {
           email: this.input.email,
           password: this.input.password
         };
-
         HTTP.post(`/login`, {
           body: result
         })
           .then(response => {
             this.readOnly = false;
             this.account = false;
-            const token = localStorage.setItem("token", response.data);
+            this.USER_TOKEN = response.data.data.token;
+            localStorage.setItem("token", this.USER_TOKEN);
             this.token = true;
             this.input.email = "";
             this.input.password = "";
@@ -648,7 +399,8 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
-            const token = localStorage.setItem("token", response.data);
+            this.USER_TOKEN = response.data.data.token;
+            localStorage.setItem("token", this.USER_TOKEN);
             this.token = true;
             this.input.email = "";
             this.input.password = "";

@@ -246,7 +246,7 @@ export default {
       ]
     },
     dsScheduleFrequencyDayOfWeek: {
-      weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      weekdays: [ 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       labels: {
         type: 'Days of week'
       },
@@ -373,7 +373,7 @@ export default {
     },
 
     dsWeeksView: {
-      weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      weekdays: ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
     },
 
     dsDaysView: {
@@ -384,7 +384,7 @@ export default {
     },
 
     dsDayPicker: {
-      weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      weekdays: ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
       labels: {
         prevMonth: 'Previous month',
         nextMonth: 'Next month'
