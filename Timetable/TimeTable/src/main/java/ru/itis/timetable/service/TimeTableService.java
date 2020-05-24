@@ -9,5 +9,7 @@ public interface TimeTableService {
 
     List<TimeTableDto> getAllByGroup(String group);
 
+    Boolean saveNewTimeTable();
+
    // TimeTableDto getById(Long id);
 }
