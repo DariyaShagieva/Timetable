@@ -59,7 +59,7 @@
                           <v-row>
                             <v-col cols="12">
                               <v-text-field
-                                :rules="emailRules" 
+                                :rules="emailRules"
                                 prepend-icon="person"
                                 label="Email*"
                                 required
@@ -69,7 +69,7 @@
                             <v-col cols="12">
                               <v-text-field
                                 prepend-icon="lock"
-                                :rules="passwordRules" 
+                                :rules="passwordRules"
                                 name="Password"
                                 label="Password*"
                                 v-model="input.password"
@@ -107,7 +107,7 @@
                               <v-text-field
                                 prepend-icon="person"
                                 label="Email*"
-                                :rules="emailRules" 
+                                :rules="emailRules"
                                 required
                                 v-model="input.email"
                               ></v-text-field>
@@ -148,7 +148,7 @@
                               <v-text-field
                                 prepend-icon="lock"
                                 name="Password"
-                                :rules="passwordRules" 
+                                :rules="passwordRules"
                                 label="Password*"
                                 v-model="input.password"
                                 type="password"
@@ -422,7 +422,12 @@ export default {
         };
 
         HTTP.post(`/register`, {
-          body: result
+          email: this.input.email,
+          password: this.input.password,
+          firstName: this.input.firstName,
+          lastName: this.input.lastName,
+          patronymic: this.input.patronymic,
+          group: this.input.group
         })
           .then(response => {
             this.readOnly = false;

@@ -14,7 +14,7 @@ import ru.itis.timetable.service.TimeTableService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/timetable")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class TimeTableController {
 

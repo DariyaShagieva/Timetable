@@ -1,5 +1,8 @@
 import axios from 'axios';
 
 export const HTTP = axios.create({
-  baseURL: 'https://private-cbd41-timetable7.apiary-mock.com',
+  baseURL: 'http://localhost:8080/',
+  headers: {
+    "Content-type": "application/json",
+  }
 })
