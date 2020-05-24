@@ -26,7 +26,7 @@ public class RecoveryController {
     @PreAuthorize("permitAll()")
     public ResponseEntity<RecoveryDto> recovery(@Valid @RequestBody RecoveryForm recoveryForm) {
         RecoveryDto recovery = userService.recovery(recoveryForm);
-        //отправлять сообщение 
+        //to do отправлять сообщение
         return ResponseEntity.ok(recovery);
     }
 }
