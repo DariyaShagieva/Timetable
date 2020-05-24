@@ -59,6 +59,7 @@
                           <v-row>
                             <v-col cols="12">
                               <v-text-field
+                                :rules="emailRules" 
                                 prepend-icon="person"
                                 label="Email*"
                                 required
@@ -68,6 +69,7 @@
                             <v-col cols="12">
                               <v-text-field
                                 prepend-icon="lock"
+                                :rules="passwordRules" 
                                 name="Password"
                                 label="Password*"
                                 v-model="input.password"
@@ -105,6 +107,7 @@
                               <v-text-field
                                 prepend-icon="person"
                                 label="Email*"
+                                :rules="emailRules" 
                                 required
                                 v-model="input.email"
                               ></v-text-field>
@@ -145,6 +148,7 @@
                               <v-text-field
                                 prepend-icon="lock"
                                 name="Password"
+                                :rules="passwordRules" 
                                 label="Password*"
                                 v-model="input.password"
                                 type="password"
@@ -255,6 +259,14 @@ export default {
     token: false,
     code: "",
     USER_TOKEN: "",
+    emailRules: [
+      vm => !!vm || 'E-mail is required',
+      vm => /.+@.+/.test(vm) || 'E-mail must be valid',
+    ],
+    passwordRules:[
+      vm => !!vm || 'Password is required',
+      vm => vm.length <= 7 || 'Password must be less than 7 characters'
+    ],
     input: {
       email: "",
       password: "",
@@ -273,13 +285,17 @@ export default {
     locales: [
       { value: "ru", text: "Русский" },
       { value: "en", text: "English" }
-    ]
+    ],
+    reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
   }),
   mounted() {
     window.app = this.$refs.app;
     this.loadState();
   },
   methods: {
+    isEmailValid: function() {
+      return (this.input.email == "")? "" : (this.reg.test(this.input.email)) ? 'has-success' : 'has-error';
+    },
     getCalendarTime(calendarEvent) {
       let sa = calendarEvent.start.format("a");
       let ea = calendarEvent.end.format("a");
@@ -334,7 +350,6 @@ export default {
     },
     joinToChannel() {
       const AuthStr = "Bearer ".concat(this.USER_TOKEN);
-      console.log(AuthStr);
       HTTP.get(`/telegram`, { headers: { Authorization: AuthStr } })
         .then(response => {
           this.dialog = true;
