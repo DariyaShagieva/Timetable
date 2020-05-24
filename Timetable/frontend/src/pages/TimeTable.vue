@@ -339,6 +339,9 @@ export default {
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
+            if (ev.schedule.dayOfWeek) {
+              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
+            }
             ev.schedule.times = Object.values(ev.schedule.times);
             ev.schedule.times[0] = { hour: Number(ev.schedule.times[0]) };
             ev.schedule.times[1] = { minutes: Number(ev.schedule.times[1]) };
@@ -361,15 +364,18 @@ export default {
       document.getElementById("fileUpload").click();
     },
     previewFiles(event) {
+      console.log(event.target.files[0]);
       HTTP.post(`/`, {
         headers: { ContentType: event.target.files[0].type },
         file: event.target.files[0]
       })
         .then(response => {
-          console.log(response);
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
+            if (ev.schedule.dayOfWeek) {
+              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
+            }
             ev.schedule.times = Object.values(ev.schedule.times);
             ev.schedule.times[0] = { hour: Number(ev.schedule.times[0]) };
             ev.schedule.times[1] = { minutes: Number(ev.schedule.times[1]) };
