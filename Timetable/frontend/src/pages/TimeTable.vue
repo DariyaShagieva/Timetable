@@ -195,7 +195,7 @@
                 <v-card-title class="headline">Join to channel</v-card-title>
                 <v-flex>
                   <v-card-text>Введите код для идентификации</v-card-text>
-                  <v-card-text>53563890567</v-card-text>
+                  <v-card-text>{{this.code}}</v-card-text>
                 </v-flex>
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -251,7 +251,8 @@ export default {
     readOnly: true,
     dialog: false,
     token: false,
-    USER_TOKEN: "jkadfhkj3hadf",
+    code: "",
+    USER_TOKEN: "",
     input: {
       email: "",
       password: "",
@@ -330,12 +331,12 @@ export default {
         .catch(e => alert(e));
     },
     joinToChannel() {
-      const AuthStr = 'Bearer '.concat(this.USER_TOKEN);
+      const AuthStr = "Bearer ".concat(this.USER_TOKEN);
       console.log(AuthStr);
-      HTTP.get(`/telegram`)
+      HTTP.get(`/telegram`, { headers: { Authorization: AuthStr } })
         .then(response => {
           this.dialog = true;
-          console.log(response);
+          this.code = response.data.code;
         })
         .catch(e => alert(e));
     },
