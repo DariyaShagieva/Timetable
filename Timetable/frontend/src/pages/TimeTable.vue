@@ -346,6 +346,16 @@ export default {
       document.getElementById("fileUpload").click();
     },
     previewFiles(event) {
+      HTTP.post(`/`, {
+        headers: { ContentType: event.target.files[0].type },
+        body: {
+          file: event.target.files[0]
+        }
+      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => alert(e));
       console.log(event.target.files[0]);
     },
     login() {
