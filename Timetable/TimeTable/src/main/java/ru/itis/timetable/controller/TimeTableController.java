@@ -1,6 +1,7 @@
 package ru.itis.timetable.controller;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +15,8 @@ import ru.itis.timetable.service.TimeTableService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/timetable")
+@RequiredArgsConstructor
 public class TimeTableController {
 
     @Autowired
@@ -28,7 +30,7 @@ public class TimeTableController {
     }
 
     @ApiOperation("Get all timetable forms for group")
-    @GetMapping
+    @GetMapping("/{group}")
     @PreAuthorize("permitAll()")
     public ResponseEntity<List<TimeTableDto>> getAllByGroup(@PathVariable String group) {
         return ResponseEntity.ok().body(timeTableService.getAllByGroup(group));

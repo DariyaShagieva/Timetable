@@ -37,6 +37,4 @@ public class TimeTable {
     @Enumerated(value = EnumType.STRING)
     private Time time;
 
-    /*@OneToMany(mappedBy = "timetable")
-    private List<Note> notes;*/
 }

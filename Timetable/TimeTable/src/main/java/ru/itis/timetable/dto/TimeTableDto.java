@@ -16,7 +16,7 @@ public class TimeTableDto {
 
     private String teacher;
 
-    private ScheduleDto shedule;
+    private ScheduleTableDto shedule;
 
 
 

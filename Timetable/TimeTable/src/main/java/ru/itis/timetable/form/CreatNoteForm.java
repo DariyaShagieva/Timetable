@@ -1,19 +1,21 @@
-package ru.itis.timetable.dto;
+package ru.itis.timetable.form;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@Builder
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-public class NoteDto {
+public class CreatNoteForm {
 
     private String description;
 
-    private ScheduleNoteDto shedule;
+    private ScheduleForm shedule;
+
 
 
 

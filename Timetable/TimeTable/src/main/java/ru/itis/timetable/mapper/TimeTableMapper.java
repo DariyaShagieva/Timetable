@@ -2,10 +2,9 @@ package ru.itis.timetable.mapper;
 
 
 import org.springframework.stereotype.Component;
-import ru.itis.timetable.dto.ScheduleDto;
+import ru.itis.timetable.dto.ScheduleTableDto;
 import ru.itis.timetable.dto.TimeDto;
 import ru.itis.timetable.dto.TimeTableDto;
-import ru.itis.timetable.model.Days;
 import ru.itis.timetable.model.TimeTable;
 
 import java.util.List;
@@ -23,13 +22,13 @@ public class TimeTableMapper {
                 .build();
     }
 
-    private ScheduleDto createSchedule(TimeTable timeTable) {
+    private ScheduleTableDto createSchedule(TimeTable timeTable) {
         String[] time = timeTable.getTime().getTime().split(":");
         TimeDto timeDto = TimeDto.builder()
                 .hour(time[0])
                 .minute(time[1])
                 .build();
-        return ScheduleDto.builder()
+        return ScheduleTableDto.builder()
                 .dayOfWeek(timeTable.getDay().ordinal() + 1)
                 .times(timeDto).build();
     }

@@ -1,4 +1,5 @@
-package ru.itis.timetable.model;
+package ru.itis.timetable.form;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,21 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.timetable.dto.TimeDto;
 
-import javax.persistence.*;
-
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-public class Note {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "time_table_kfu_id")
-    private Long id;
-
-    private String description;
+public class ScheduleForm {
 
     private Integer dayOfWeek;
 
@@ -32,9 +23,5 @@ public class Note {
 
     private String durationUnit;
 
-    private String times;
-
-    @Column(name = "user_group")
-    private String group;
-
+    private TimeDto times;
 }

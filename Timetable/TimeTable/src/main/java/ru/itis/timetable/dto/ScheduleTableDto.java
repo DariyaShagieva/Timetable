@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @NoArgsConstructor
-public class ScheduleDto {
+public class ScheduleTableDto {
 
     private int dayOfWeek;
 
