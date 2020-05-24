@@ -263,7 +263,7 @@ export default {
       vm => !!vm || "E-mail is required",
       vm => /.+@.+/.test(vm) || "E-mail must be valid"
     ],
-    passwordRules: [
+    passwordRules:[
       vm => !!vm || "Password is required",
       vm => vm.length <= 7 || "Password must be less than 7 characters"
     ],
@@ -350,8 +350,8 @@ export default {
         .catch(e => alert(e));
     },
     joinToChannel() {
-      const AuthStr = "Bearer ".concat(this.USER_TOKEN);
-      HTTP.get(`/telegram`, { headers: { Authorization: AuthStr } })
+      const token = localStorage.getItem('token');
+      HTTP.get(`/telegram`, { headers: { Authorization: token } })
         .then(response => {
           this.dialog = true;
           this.code = response.data.code;
@@ -390,8 +390,8 @@ export default {
           .then(response => {
             this.readOnly = false;
             this.account = false;
-            this.USER_TOKEN = response.token;
-            localStorage.setItem("token", this.USER_TOKEN);
+            this.USER_TOKEN = response.data.token;
+            localStorage.setItem("token", response.data.token);
             this.token = true;
             this.input.email = "";
             this.input.password = "";

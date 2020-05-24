@@ -26,7 +26,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     @Override
     public List<TimeTableDto> getAllByGroup(String group) {
-        List<TimeTable> timeTableList = timeTableRepository.findAllByGroup("11-804");
+        List<TimeTable> timeTableList = timeTableRepository.findAllByGroup("11-703");
         return timeTableMapper.convertModelsToDtos(timeTableList);
     }
 

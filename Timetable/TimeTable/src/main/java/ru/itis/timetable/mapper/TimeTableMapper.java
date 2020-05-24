@@ -38,7 +38,7 @@ public class TimeTableMapper {
                 .minute(time[1])
                 .build();
         return ScheduleTableDto.builder()
-                .dayOfWeek(timeTable.getDay().ordinal() + 1)
+                .dayOfWeek(timeTable.getDay().ordinal())
                 .times(timeDto).build();
     }
 

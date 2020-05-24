@@ -1,6 +1,7 @@
 package ru.itis.timetable.model;
 
 public enum Days {
+    SUNDAY("воскресенье"),
     MONDAY("понедельник"),
     TUESDAY("вторник"),
     WEDNESDAY ("среда"),

@@ -37,9 +37,9 @@ public class TimeTableController {
     }
   @SneakyThrows
   @ApiOperation("Upload timeTable")
-  @PostMapping("/save")
+  @PostMapping()
   @PreAuthorize("permitAll()")
-  public ResponseEntity<List<TimeTableDto>> save(MultipartFile file) {
+  public ResponseEntity<List<TimeTableDto>> save(@PathVariable MultipartFile file) {
       timeTableService.saveNewTimeTable(file.getInputStream());
     return ResponseEntity.ok().build();
   }

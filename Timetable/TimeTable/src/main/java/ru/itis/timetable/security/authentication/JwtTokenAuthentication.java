@@ -28,6 +28,7 @@ public class JwtTokenAuthentication implements Authentication {
 
     @Override
     public Object getDetails() {
+
         return userDetails;
     }
 
@@ -48,7 +49,7 @@ public class JwtTokenAuthentication implements Authentication {
 
     @Override
     public String getName() {
-        return null;
+        return token;
     }
 
     public void setUserDetails(UserDetails userDetails) {
