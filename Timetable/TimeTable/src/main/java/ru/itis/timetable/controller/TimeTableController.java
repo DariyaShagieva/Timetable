@@ -36,12 +36,14 @@ public class TimeTableController {
         return ResponseEntity.ok().body(timeTableService.getAllByGroup(group));
     }
 
-  /*  @ApiOperation("Get timetable form by id")
+    /*@ApiOperation("Get timetable form by id")
     @GetMapping("/{id}")
     @PreAuthorize("permitAll()")
     public ResponseEntity<TimeTableDto> get(@PathVariable Long id) {
         return ResponseEntity.ok().body(timeTableService)
-    }*/
+    }
+*/
+
 
 
 

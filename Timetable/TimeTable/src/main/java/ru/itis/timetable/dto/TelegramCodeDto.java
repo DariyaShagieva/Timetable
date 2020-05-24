@@ -10,14 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @NoArgsConstructor
-public class TimeTableDto {
+public class TelegramCodeDto {
 
-    private DataDto data;
-
-    private ScheduleTableDto shedule;
-
-
-
-
-
+    private String code;
 }

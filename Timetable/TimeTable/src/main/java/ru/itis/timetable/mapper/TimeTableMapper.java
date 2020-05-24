@@ -2,6 +2,7 @@ package ru.itis.timetable.mapper;
 
 
 import org.springframework.stereotype.Component;
+import ru.itis.timetable.dto.DataDto;
 import ru.itis.timetable.dto.ScheduleTableDto;
 import ru.itis.timetable.dto.TimeDto;
 import ru.itis.timetable.dto.TimeTableDto;
@@ -16,10 +17,18 @@ public class TimeTableMapper {
 
     public TimeTableDto convertModelToDto(TimeTable timeTable) {
         return TimeTableDto.builder()
-                .title(timeTable.getCourse().getTitle())
-                .teacher(timeTable.getTeacher().getFio())
+                .data(createDataDto(timeTable))
                 .shedule(createSchedule(timeTable))
                 .build();
+    }
+
+    private DataDto createDataDto(TimeTable timeTable) {
+        return DataDto.builder()
+                .title(timeTable.getCourse().getTitle())
+                .teacher(timeTable.getTeacher().getFio())
+                .description(timeTable.getDescription())
+                .build();
+
     }
 
     private ScheduleTableDto createSchedule(TimeTable timeTable) {

@@ -6,18 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @AllArgsConstructor
 @Builder
 @Data
 @NoArgsConstructor
-public class TimeTableDto {
+public class DataDto {
 
-    private DataDto data;
+    private String title;
 
-    private ScheduleTableDto shedule;
+    private String teacher;
 
-
-
-
-
+    private String description;
 }

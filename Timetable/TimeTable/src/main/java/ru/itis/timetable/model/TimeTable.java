@@ -37,4 +37,6 @@ public class TimeTable {
     @Enumerated(value = EnumType.STRING)
     private Time time;
 
+    private String description;
+
 }
