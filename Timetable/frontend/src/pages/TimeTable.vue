@@ -265,7 +265,7 @@ export default {
     ],
     passwordRules: [
       vm => !!vm || "Password is required",
-      vm => vm.length <= 7 || "Password must be less than 7 characters"
+      vm => vm.length >= 7 || "Password must be more than 7 characters"
     ],
     input: {
       email: "",
@@ -339,18 +339,9 @@ export default {
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
-            if (ev.schedule.dayOfWeek) {
-              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
-            }
-            if (ev.schedule.times) {
-              if (ev.schedule.times.hour) {
-                ev.schedule.times.hour = [Number(ev.schedule.times.hour)];
-              }
-              if (ev.schedule.times.minutes) {
-                ev.schedule.times.minutes = [Number(ev.schedule.times.minutes)];
-              }
-              ev.schedule.times = [Number(ev.schedule.times)];
-            }
+            ev.schedule.times = Object.values(ev.schedule.times);
+            ev.schedule.times[0] = { hour: Number(ev.schedule.times[0]) };
+            ev.schedule.times[1] = { minutes: Number(ev.schedule.times[1]) };
             ev.data = dsMerge(ev.data, defaults);
           });
           this.$refs.app.setState(state);
@@ -375,21 +366,13 @@ export default {
         file: event.target.files[0]
       })
         .then(response => {
+          console.log(response);
           state.events = Object.values(response.data);
           let defaults = this.$dayspan.getDefaultEventDetails();
           state.events.forEach(ev => {
-            if (ev.schedule.dayOfWeek) {
-              ev.schedule.dayOfWeek = [Weekday.LIST[ev.schedule.dayOfWeek]];
-            }
-            if (ev.schedule.times) {
-              if (ev.schedule.times.hour) {
-                ev.schedule.times.hour = [Number(ev.schedule.times.hour)];
-              }
-              if (ev.schedule.times.minutes) {
-                ev.schedule.times.minutes = [Number(ev.schedule.times.minutes)];
-              }
-              ev.schedule.times = [Number(ev.schedule.times)];
-            }
+            ev.schedule.times = Object.values(ev.schedule.times);
+            ev.schedule.times[0] = { hour: Number(ev.schedule.times[0]) };
+            ev.schedule.times[1] = { minutes: Number(ev.schedule.times[1]) };
             ev.data = dsMerge(ev.data, defaults);
           });
           this.$refs.app.setState(state);
