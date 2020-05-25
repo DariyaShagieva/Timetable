@@ -35,13 +35,14 @@ public class TimeTableController {
     public ResponseEntity<List<TimeTableDto>> getAllByGroup(@PathVariable String group) {
         return ResponseEntity.ok().body(timeTableService.getAllByGroup(group));
     }
-  @SneakyThrows
-  @ApiOperation("Upload timeTable")
-  @PostMapping()
-  @PreAuthorize("permitAll()")
-  public ResponseEntity<List<TimeTableDto>> save(@PathVariable MultipartFile file) {
+    @SneakyThrows
+    @ApiOperation("Upload timeTable")
+    @PostMapping()
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<List<TimeTableDto>> save(@PathVariable MultipartFile file) {
       timeTableService.saveNewTimeTable(file.getInputStream());
-    return ResponseEntity.ok().build();
+      String group = "11-703";
+      return ResponseEntity.ok().body(timeTableService.getAllByGroup(group));
   }
 
     /*@ApiOperation("Get timetable form by id")
