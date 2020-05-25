@@ -364,10 +364,23 @@ export default {
       document.getElementById("fileUpload").click();
     },
     previewFiles(event) {
-      console.log(event.target.files[0]);
-      HTTP.post(`/`, {
-        headers: { ContentType: event.target.files[0].type },
-        file: event.target.files[0]
+      let state = {};
+      try {
+        let savedState = JSON.parse(localStorage.getItem(this.storeKey));
+        if (savedState) {
+          state = savedState;
+          state.preferToday = false;
+        }
+      } catch (e) {
+        console.log(e);
+      }
+      const file = event.target.files[0];
+      let formData = new FormData();
+      formData.append("file", file);
+      HTTP.post("/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
       })
         .then(response => {
           state.events = Object.values(response.data);
@@ -384,7 +397,6 @@ export default {
           this.$refs.app.setState(state);
         })
         .catch(e => alert(e));
-      console.log(event.target.files[0]);
     },
     login() {
       if (this.input.email != "" && this.input.password != "") {
